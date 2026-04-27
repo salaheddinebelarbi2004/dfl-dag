@@ -25,25 +25,25 @@ from client import FederatedLearningClient, create_synthetic_client_data
 def load_real_client_data(client_id: int, data_dir: str = "real_federated_data") -> Tuple[np.ndarray, np.ndarray]:
     """
     Load real embeddings and labels for a specific client.
-    
+
     Args:
         client_id: Client index (0-11)
         data_dir: Directory containing client npz files
-        
+
     Returns:
         Tuple of (embeddings, one_hot_labels)
     """
     import os
-    
+
     npz_path = os.path.join(data_dir, f"client_{client_id}.npz")
-    
+
     if not os.path.exists(npz_path):
         raise FileNotFoundError(f"Real data not found: {npz_path}")
-    
+
     data = np.load(npz_path)
     X = data['X'].astype(np.float32)
     y = data['y'].astype(np.float32)
-    
+
     return X, y
 from shard_chief import ShardChief, ShardChiefCandidate, ShardChiefElector, NodeCapabilities
 from global_aggregator import GlobalCoordinator, ShardModelUpdate
@@ -130,7 +130,7 @@ class ShardedFederatedLearningSystem:
                     print(f"[LOAD] client_{i}: {len(X)} real samples from {self.real_data_dir}")
             else:
                 X, y = create_synthetic_client_data(i, num_samples=500)
-            
+
             client.set_local_dataset(X, y)
             self.clients.append(client)
 
@@ -241,7 +241,7 @@ class ShardedFederatedLearningSystem:
                             print(f"    {line}")
 
         round_meta["steps"]["2-6_client_updates"] = step6_meta
-        
+
         # Calculate average gradient magnitude
         if step6_meta["clients"]:
             gradient_norms = [c["gradient_norm"] for c in step6_meta["clients"]]
@@ -303,13 +303,13 @@ class ShardedFederatedLearningSystem:
                     shard_aggregates.append(shard_model_update)
 
                     shard_contribution_norm = float(np.linalg.norm(shard_aggregate.flatten()))
-                    
+
                     step9_meta["shard_results"][shard_id] = {
                         "updates_aggregated": len(shard_updates),
                         "verification_rate": shard_model_update.verification_success_rate,
                         "aggregation_norm": shard_contribution_norm,
                     }
-                    
+
                     round_meta["shard_contributions"][shard_id] = {
                         "num_updates": len(shard_updates),
                         "verification_rate": float(shard_model_update.verification_success_rate),
@@ -343,7 +343,7 @@ class ShardedFederatedLearningSystem:
                 # Track model changes
                 model_change = self.global_model - model_before
                 model_change_norm = float(np.linalg.norm(model_change.flatten()))
-                
+
                 round_meta["model_changes"] = {
                     "weight_change_norm": model_change_norm,
                     "global_model_norm": float(np.linalg.norm(self.global_model.flatten())),
@@ -423,10 +423,10 @@ class ShardedFederatedLearningSystem:
         steps = round_meta.get("steps", {})
         client_updates = steps.get("2-6_client_updates", {})
         shard_results = steps.get("7-9_shard_aggregation", {}).get("shard_results", {})
-        
+
         print(f"\n[CLIENT TRAINING]")
         print(f"  Successful: {client_updates.get('successful_submissions', 0)}/{self.num_clients}")
-        
+
         # Gradient statistics
         grad_stats = round_meta.get("gradient_stats", {})
         if grad_stats:
@@ -435,7 +435,7 @@ class ShardedFederatedLearningSystem:
             print(f"  Max: {grad_stats.get('max_gradient_norm', 0):.6f}")
             print(f"  Min: {grad_stats.get('min_gradient_norm', 0):.6f}")
             print(f"  StdDev: {grad_stats.get('std_gradient_norm', 0):.6f}")
-        
+
         # Shard aggregation details
         print(f"\n[SHARD AGGREGATION]")
         for shard_id, result in shard_results.items():
@@ -444,7 +444,7 @@ class ShardedFederatedLearningSystem:
                 print(f"    Updates: {result.get('updates_aggregated', 0)}")
                 print(f"    Verification: {result.get('verification_rate', 0):.1%}")
                 print(f"    Update Norm: {result.get('aggregation_norm', 0):.6f}")
-        
+
         # Model weight changes
         model_changes = round_meta.get("model_changes", {})
         if model_changes:
@@ -452,7 +452,7 @@ class ShardedFederatedLearningSystem:
             print(f"  Weight Change Norm: {model_changes.get('weight_change_norm', 0):.6f}")
             print(f"  Global Model Norm: {model_changes.get('global_model_norm', 0):.6f}")
             print(f"  Change Ratio: {model_changes.get('model_change_ratio', 0):.4%}")
-        
+
         print(f"  Round Time: {round_meta.get('elapsed_seconds', 0):.2f}s")
 
     def _print_final_summary(self, stats: Dict):
@@ -464,31 +464,31 @@ class ShardedFederatedLearningSystem:
         print(f"Rounds: {stats['num_rounds']}")
         print(f"Clients: {stats['num_clients']}")
         print(f"Shards: {stats['num_shards']}")
-        
+
         # Aggregate metrics across all rounds
         all_metrics = stats.get("total_round_metrics", [])
-        
+
         if all_metrics:
             # Gradient evolution
             grad_norms = []
             model_change_norms = []
-            
+
             for metric in all_metrics:
                 grad_stat = metric.get("gradient_stats", {})
                 if grad_stat:
                     grad_norms.append(grad_stat.get("avg_gradient_norm", 0))
-                
+
                 model_change = metric.get("model_changes", {})
                 if model_change:
                     model_change_norms.append(model_change.get("weight_change_norm", 0))
-            
+
             print(f"\n[GRADIENT EVOLUTION]")
             if grad_norms:
                 print(f"  Initial Avg Gradient: {grad_norms[0]:.6f}")
                 print(f"  Final Avg Gradient: {grad_norms[-1]:.6f}")
                 print(f"  Min Avg Gradient: {min(grad_norms):.6f}")
                 print(f"  Max Avg Gradient: {max(grad_norms):.6f}")
-            
+
             print(f"\n[WEIGHT CHANGES]")
             if model_change_norms:
                 print(f"  Total Weight Updates: {sum(model_change_norms):.6f}")
@@ -690,7 +690,7 @@ if __name__ == "__main__":
     pretrained_model = None
     use_real_data = False
     real_data_dir = "real_federated_data"
-    
+
     if len(sys.argv) > 1:
         for arg in sys.argv[1:]:
             if arg.endswith(".pt") or arg.endswith(".npy") or "model" in arg.lower():
@@ -704,13 +704,13 @@ if __name__ == "__main__":
                 real_data_dir = arg.split("=")[1]
                 use_real_data = True
                 print(f"[DATA] Using real embeddings from: {real_data_dir}")
-    
+
     # Check if real data directory exists when requested
     if use_real_data and not os.path.exists(real_data_dir):
         print(f"[ERROR] Real data directory not found: {real_data_dir}")
         print(f"[ERROR] Please run: python generate_embeddings.py")
         sys.exit(1)
-    
+
     if use_real_data:
         print(f"\n[INFO] Real Data Mode:")
         print(f"  - Loading embeddings from: {real_data_dir}")
