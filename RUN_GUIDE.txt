@@ -1,0 +1,242 @@
+"""
+RUN GUIDE - Complete System Execution
+=====================================
+
+Three easy ways to run the complete federated learning system
+with real data and the lightweight classifier.
+"""
+
+# ============================================================
+# METHOD 1: SIMPLEST - Just Run One Command (Recommended)
+# ============================================================
+
+# This is the easiest way - no manual node management needed
+python simple_runner.py
+
+# This will:
+# ✅ Load 12 clients' real data from real_federated_data/
+# ✅ Initialize lightweight classifiers (logistic regression)
+# ✅ Train locally on each client for 5 rounds
+# ✅ Aggregate models using FedAvg (weighted average)
+# ✅ Save results to federated_learning_results.json
+# ✅ Print accuracy/loss improvements
+
+# Expected output:
+#   Round 1: loss=0.683421, acc=0.5234
+#   Round 2: loss=0.601234, acc=0.6145
+#   ...
+#   Round 5: loss=0.421563, acc=0.7823
+#
+# Estimated time: 2-3 minutes
+
+
+# ============================================================
+# METHOD 2: With P2P Network Nodes (Advanced)
+# ============================================================
+
+# Option A: Automatic startup
+python quickstart.py
+# Then choose "2" for automatic mode
+
+# Option B: Manual node startup (for control)
+# Terminal 1:
+python p2p_node.py 127.0.0.1 5000
+
+# Terminal 2 (after terminal 1 ready):
+python p2p_node.py 127.0.0.1 5001
+# In terminal 2, type: connect 127.0.0.1 5000
+
+# Terminal 3 (after terminal 2 ready):
+python p2p_node.py 127.0.0.1 5002
+# In terminal 3, type: connect 127.0.0.1 5000
+
+# Terminal 4 (after all nodes ready):
+python run_full_system.py
+
+# This will:
+# ✅ Start 3 P2P network nodes
+# ✅ Load real data
+# ✅ Train lightweight classifier
+# ✅ Use all advanced features:
+#    - Robust aggregation
+#    - Global aggregator
+#    - DAG system for model tracking
+#    - ZKP verification
+
+
+# ============================================================
+# METHOD 3: Full System (Original, All Components)
+# ============================================================
+
+# This runs the complete system with all features
+python federated_learning_system.py
+
+# This will:
+# ✅ Initialize 12 clients in 3 shards
+# ✅ Run 5 federated learning rounds
+# ✅ Execute 10-step workflow per round:
+#    1. Local training
+#    2. Gradient encoding with polynomial proxy
+#    3. ZKP proof generation
+#    4. Robust aggregation
+#    5. Byzantine-resilient filtering
+#    6. Model update computation
+#    7. Shard chief election
+#    8. Feature importance computation
+#    9. DAG system update
+#    10. Global aggregation
+# ✅ Save complete results to training_results.json
+
+# Note: Uses synthetic data, not real data
+
+
+# ============================================================
+# CONFIGURATION - Customize Your Run
+# ============================================================
+
+# Edit: federated_learning_config.py
+
+# System Scale
+NUM_CLIENTS = 12        # Total clients (increase for larger system)
+NUM_SHARDS = 3          # Number of shards (divide clients)
+
+# Training Parameters
+NUM_ROUNDS = 5          # Number of federated rounds
+LOCAL_EPOCHS = 2        # Local training epochs per client
+LEARNING_RATE = 0.01    # Gradient descent learning rate
+BATCH_SIZE = 32         # Mini-batch size
+
+# Examples:
+# - Small test: NUM_CLIENTS=3, NUM_ROUNDS=1, LOCAL_EPOCHS=1
+# - Normal run: NUM_CLIENTS=12, NUM_ROUNDS=5, LOCAL_EPOCHS=2
+# - Large run: NUM_CLIENTS=30, NUM_ROUNDS=10, LOCAL_EPOCHS=3
+
+
+# ============================================================
+# OUTPUT FILES - What Gets Generated
+# ============================================================
+
+# Method 1 (simple_runner.py):
+#   federated_learning_results.json
+#   - Training history for each round
+#   - Client metrics (loss, accuracy)
+#   - Aggregated metrics
+#   - System configuration
+
+# Method 2 (run_full_system.py):
+#   full_system_results.json
+#   - System configuration
+#   - P2P network info
+#   - Training metrics per round
+#   - Aggregation results
+
+# Method 3 (federated_learning_system.py):
+#   training_results.json
+#   - Complete 10-step workflow results
+#   - Per-round statistics
+#   - Client and shard metrics
+#   - DAG information
+#   - Robust aggregation details
+
+
+# ============================================================
+# COMPARING THE METHODS
+# ============================================================
+
+# Method 1 (simple_runner.py):
+#   ✅ Easiest to run
+#   ✅ Focuses on training accuracy
+#   ✅ Real federated data
+#   ✅ Clear metrics (loss, accuracy)
+#   ⏱️  Fastest (~2-3 min)
+#   ❌ No P2P networking
+#   Recommended for: Learning & Testing
+
+# Method 2 (run_full_system.py):
+#   ✅ Complete P2P network
+#   ✅ Real federated data
+#   ✅ Advanced features (DAG, ZKP)
+#   ⏱️  Medium speed (~3-5 min)
+#   Recommended for: Production-like testing
+
+# Method 3 (federated_learning_system.py):
+#   ✅ Most features
+#   ✅ Byzantine resilience
+#   ✅ Zero-knowledge proofs
+#   ✅ Sophisticated aggregation
+#   ⏱️  Varies (depends on config)
+#   ❌ Synthetic data
+#   Recommended for: Feature demonstration
+
+
+# ============================================================
+# MONITORING & DEBUGGING
+# ============================================================
+
+# View results in real-time:
+# Terminal 1: python simple_runner.py
+# Terminal 2: watch -n 1 "ls -lh federated_learning_results.json"
+
+# Check current metrics:
+python -c "
+import json
+with open('federated_learning_results.json') as f:
+    data = json.load(f)
+    for round in data['training_history']:
+        m = round['aggregated_metrics']
+        print(f'Round {round[\"round\"]}: loss={m[\"avg_loss\"]:.6f}, acc={m[\"avg_accuracy\"]:.4f}')
+"
+
+# Extract final accuracy:
+python -c "
+import json
+with open('federated_learning_results.json') as f:
+    data = json.load(f)
+    final = data['training_history'][-1]['aggregated_metrics']
+    print(f'Final Accuracy: {final[\"avg_accuracy\"]:.4f}')
+"
+
+
+# ============================================================
+# TROUBLESHOOTING
+# ============================================================
+
+# Problem: "No client files found"
+# Solution: Make sure real_federated_data/ folder exists with client_*.npz files
+
+# Problem: "ModuleNotFoundError: numpy"
+# Solution: pip install -r requirements.txt
+
+# Problem: Nodes won't connect
+# Solution: Make sure port 5000, 5001, 5002 are free
+# Check: netstat -ano | findstr :5000 (Windows)
+
+# Problem: Out of memory
+# Solution: Reduce NUM_CLIENTS or BATCH_SIZE in config
+
+# Problem: Training is too slow
+# Solution: Reduce LOCAL_EPOCHS or NUM_ROUNDS
+
+
+# ============================================================
+# NEXT STEPS
+# ============================================================
+
+# 1. Run the simplest method first:
+#    python simple_runner.py
+
+# 2. Check the results:
+#    cat federated_learning_results.json
+
+# 3. Modify configuration:
+#    Edit federated_learning_config.py
+
+# 4. Try the advanced method with P2P nodes:
+#    python run_full_system.py
+
+# 5. Experiment with different settings:
+#    - More clients: NUM_CLIENTS = 30
+#    - More rounds: NUM_ROUNDS = 10
+#    - Different learning rates: LEARNING_RATE = 0.001
+
+print("\n✅ Ready to run! Pick a method above and execute it.\n")
