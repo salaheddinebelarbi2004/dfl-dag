@@ -69,8 +69,6 @@ class NeuralNetworkSimulator:
         self.b1 = np.zeros(hidden_dim)
         self.W2 = np.random.randn(hidden_dim, output_dim) * 0.01
         self.b2 = np.zeros(output_dim)
-        
-        self.params_history = [self.get_params()]
     
     def get_params(self) -> np.ndarray:
         """Get flattened parameters"""
@@ -132,7 +130,17 @@ class NeuralNetworkSimulator:
         """
         A2, _ = self.forward(X)
         m = X.shape[0]
-        
+        # Ensure labels are one-hot with same width as outputs
+        if y is None:
+            raise ValueError("Labels `y` must be provided for loss computation")
+
+        # If labels are provided as class indices (shape (m,) or (m,1)), convert to one-hot
+        if y.ndim == 1 or (y.ndim == 2 and y.shape[1] != A2.shape[1]):
+            y_indices = y.reshape(-1).astype(int)
+            if y_indices.shape[0] != m:
+                raise ValueError("Label array length does not match number of samples")
+            y = np.eye(self.output_dim, dtype=float)[y_indices]
+
         # Cross-entropy loss
         loss = -np.mean(np.sum(y * np.log(A2 + 1e-8), axis=1))
         return loss
@@ -143,7 +151,16 @@ class NeuralNetworkSimulator:
         """
         A2, cache = self.forward(X)
         m = X.shape[0]
-        
+        # Ensure labels are one-hot to match A2
+        if y is None:
+            raise ValueError("Labels `y` must be provided for backward computation")
+
+        if y.ndim == 1 or (y.ndim == 2 and y.shape[1] != A2.shape[1]):
+            y_indices = y.reshape(-1).astype(int)
+            if y_indices.shape[0] != m:
+                raise ValueError("Label array length does not match number of samples")
+            y = np.eye(self.output_dim, dtype=float)[y_indices]
+
         # Output layer gradients
         dZ2 = A2 - y
         dW2 = (cache["A1"].T @ dZ2) / m
@@ -171,8 +188,6 @@ class NeuralNetworkSimulator:
         self.b1 -= learning_rate * gradients["b1"]
         self.W2 -= learning_rate * gradients["W2"]
         self.b2 -= learning_rate * gradients["b2"]
-        
-        self.params_history.append(self.get_params())
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Predict class labels"""

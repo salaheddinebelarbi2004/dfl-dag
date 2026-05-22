@@ -9,6 +9,7 @@ NOT a ledger - a model evolution DAG where:
 
 import hashlib
 import time
+import logging
 from typing import Dict, List, Set, Optional, Tuple, Any
 from dataclasses import dataclass, field
 import numpy as np
@@ -51,11 +52,60 @@ class DAGNode:
     # Auxiliary
     reputation_score: float = 0.8  # Client reputation when created
     metadata: Dict[str, Any] = field(default_factory=dict)
+    trust_score: float = 1.0
     
     def get_hash(self) -> str:
         """Get cryptographic hash of this node"""
         content = f"{self.client_id}:{self.round_num}:{self.model_hash}:{self.gradient_hash}:{self.parent_id}"
         return hashlib.sha256(content.encode()).hexdigest()
+
+
+# Helper utilities
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logging.basicConfig(level=logging.INFO)
+
+
+def extract_vector(model_hash: str, dim: int = 32) -> List[float]:
+    """Deterministically extract a numeric vector from a model_hash string.
+
+    If the string already encodes a vector (comma-separated floats), parse it.
+    Otherwise convert the hash bytes into a pseudo-random but deterministic vector.
+    """
+    if model_hash is None:
+        return [0.0] * dim
+
+    # try parse comma-separated floats
+    try:
+        parts = [float(x) for x in model_hash.split(",")]
+        if len(parts) >= dim:
+            return parts[:dim]
+        # pad if short
+        parts = parts + [0.0] * (dim - len(parts))
+        return parts
+    except Exception:
+        pass
+
+    # fallback: deterministic vector from sha256 bytes
+    h = hashlib.sha256(model_hash.encode()).digest()
+    # repeat bytes to reach dim
+    bytes_needed = dim
+    rep = (h * ((bytes_needed // len(h)) + 1))[:bytes_needed]
+    vec = np.frombuffer(rep, dtype=np.uint8).astype(np.float32)
+    # normalize to [-1,1]
+    vec = (vec / 255.0) * 2.0 - 1.0
+    # if dim differs, resize
+    if len(vec) != dim:
+        vec = np.resize(vec, dim)
+    return vec.tolist()
+
+
+def cosine_similarity(a: List[float], b: List[float]) -> float:
+    a = np.array(a, dtype=np.float32)
+    b = np.array(b, dtype=np.float32)
+    if np.linalg.norm(a) == 0 or np.linalg.norm(b) == 0:
+        return 0.0
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
 
 
 @dataclass
@@ -182,7 +232,6 @@ class DAGGraph:
         node = self.nodes[node_id]
         if node.status != UpdateStatus.VERIFIED:
             return False
-        
         # Check sibling constraint
         if node.parent_id:
             siblings = self.get_siblings(node.parent_id)
@@ -192,7 +241,24 @@ class DAGGraph:
             ]
             if len(finalized_siblings) >= self.max_concurrent_siblings:
                 return False
-        
+
+        # Compute trust score and decide
+        try:
+            trust = self.compute_trust_score(node_id)
+        except Exception as e:
+            logger.warning(f"Failed to compute trust for {node_id}: {e}")
+            trust = 0.0
+
+        # Store trust score
+        node.trust_score = float(trust)
+        logger.info(f"Node {node_id} trust_score={node.trust_score:.4f}")
+
+        if node.trust_score < 0.3:
+            node.status = UpdateStatus.REJECTED
+            node.metadata["rejection_reason"] = "low trust score"
+            logger.warning(f"Node {node_id} rejected: low trust score {node.trust_score:.4f}")
+            return False
+
         node.status = UpdateStatus.FINALIZED
         return True
     
@@ -225,6 +291,123 @@ class DAGGraph:
             if from_id == parent_id:
                 siblings.append(to_id)
         return siblings
+
+    def cross_sibling_agreement(self, parent_id: str) -> dict:
+        """Compute cross-sibling agreement for children of a parent.
+
+        Returns a dict with parent_id, sibling_scores (deviation), outliers list, mean_similarity
+        """
+        siblings = self.get_siblings(parent_id)
+        result = {
+            "parent_id": parent_id,
+            "sibling_scores": {},
+            "outliers": [],
+            "mean_similarity": 0.0,
+        }
+
+        if not siblings:
+            return result
+
+        vectors = {}
+        for sid in siblings:
+            node = self.nodes.get(sid)
+            if not node:
+                continue
+            source = node.model_hash or node.gradient_hash
+            vec = extract_vector(str(source))
+            vectors[sid] = np.array(vec, dtype=np.float32)
+
+        ids = list(vectors.keys())
+        if len(ids) == 0:
+            return result
+
+        # pairwise similarities
+        sims = []
+        for i in range(len(ids)):
+            for j in range(i+1, len(ids)):
+                a = vectors[ids[i]]
+                b = vectors[ids[j]]
+                s = cosine_similarity(a, b)
+                sims.append(s)
+
+        mean_sim = float(np.mean(sims)) if sims else 0.0
+        result["mean_similarity"] = mean_sim
+
+        # centroid
+        centroid = np.mean(np.stack([vectors[i] for i in ids]), axis=0)
+        # compute deviations: 1 - cosine_similarity(vec, centroid)
+        deviations = {}
+        for nid in ids:
+            dev = 1.0 - cosine_similarity(vectors[nid], centroid)
+            deviations[nid] = float(dev)
+
+        dev_vals = np.array(list(deviations.values()))
+        dev_mean = float(np.mean(dev_vals))
+        dev_std = float(np.std(dev_vals))
+
+        # outliers: deviation > mean + 2*std (statistical rule)
+        outliers = [nid for nid, d in deviations.items() if d > (dev_mean + 2 * dev_std)]
+
+        result["sibling_scores"] = deviations
+        result["outliers"] = outliers
+
+        if outliers:
+            logger.warning(f"Outliers detected under parent {parent_id}: {outliers}")
+
+        return result
+
+    def compute_trust_score(self, node_id: str) -> float:
+        """Compute a trust score in [0,1] for a node combining verification, structure, and agreement."""
+        if node_id not in self.nodes:
+            return 0.0
+
+        node = self.nodes[node_id]
+
+        # Verification score (0..1)
+        v_flags = 0
+        if node.zkp_verified:
+            v_flags += 1
+        if node.commitment_verified:
+            v_flags += 1
+        verification_score = v_flags / 2.0
+
+        # DAG structure consistency: combine parent trust and sibling count
+        parent_strength = 1.0
+        if node.parent_id and node.parent_id in self.nodes:
+            parent_strength = float(self.nodes[node.parent_id].trust_score)
+
+        siblings = self.get_siblings(node.parent_id) if node.parent_id else []
+        num_siblings = len(siblings)
+        # sibling_factor: penalize extremely large sibling sets
+        if num_siblings <= 1:
+            sibling_factor = 1.0
+        else:
+            sibling_factor = max(0.0, 1.0 - (num_siblings - 1) / max(self.max_concurrent_siblings, num_siblings))
+
+        structure_score = 0.5 * parent_strength + 0.5 * sibling_factor
+
+        # Cross-sibling agreement
+        agreement_score = 1.0
+        try:
+            if node.parent_id:
+                agree = self.cross_sibling_agreement(node.parent_id)
+                dev = agree.get("sibling_scores", {}).get(node_id, None)
+                if dev is None:
+                    agreement_score = 1.0
+                else:
+                    # deviation 0 -> score 1; cap between 0 and 1
+                    agreement_score = max(0.0, min(1.0, 1.0 - float(dev)))
+        except Exception as e:
+            logger.warning(f"cross_sibling_agreement failed for {node_id}: {e}")
+            agreement_score = 1.0
+
+        # Weighted combination: 40% agreement, 30% structure, 30% verification
+        total = 0.4 * agreement_score + 0.3 * structure_score + 0.3 * verification_score
+        total = max(0.0, min(1.0, total))
+
+        logger.info(f"Trust components for {node_id}: agreement={agreement_score:.3f}, structure={structure_score:.3f}, verification={verification_score:.3f} -> trust={total:.3f}")
+
+        return float(total)
     
     def get_path_to_root(self, node_id: str) -> List[str]:
         """Get path from node to root"""
@@ -335,7 +518,22 @@ class ShardedDAG:
         result = {}
         for shard_id, dag in self.shard_dags.items():
             finalized_ids = dag.get_finalized_chain()
-            result[shard_id] = [dag.nodes[nid] for nid in finalized_ids if nid in dag.nodes]
+            # Filter out low-trust nodes (<0.3)
+            filtered = []
+            for nid in finalized_ids:
+                if nid not in dag.nodes:
+                    continue
+                node = dag.nodes[nid]
+                # root node may not have trust_score or should be included
+                if nid == "root":
+                    filtered.append(node)
+                    continue
+                if getattr(node, "trust_score", 1.0) >= 0.3:
+                    filtered.append(node)
+                else:
+                    logger.warning(f"Excluding low-trust node from aggregation: shard={shard_id} node={nid} trust={node.trust_score}")
+
+            result[shard_id] = filtered
         return result
     
     def get_stats(self) -> Dict[str, Any]:

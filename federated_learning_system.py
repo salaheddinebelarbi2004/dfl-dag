@@ -21,6 +21,7 @@ from federated_learning_config import (
     VERBOSE
 )
 from client import FederatedLearningClient, create_synthetic_client_data
+from model_registry import registry
 
 def load_real_client_data(client_id: int, data_dir: str = "real_federated_data") -> Tuple[np.ndarray, np.ndarray]:
     """
@@ -519,13 +520,12 @@ class ShardedFederatedLearningSystem:
 
     def _load_pretrained_model(self, filepath: str) -> np.ndarray:
         """
-        Load pre-trained model from file (.npy, .npz, or .pt)
+        Load pre-trained model from file using model_registry.
+        
+        Supports: .npy, .npz, .pt (PyTorch), .safetensors
 
         Args:
             filepath: Path to model file
-                     - .npy: NumPy array
-                     - .npz: NumPy compressed (extracts 'model' key)
-                     - .pt:  PyTorch model (extracts and flattens weights)
 
         Returns:
             Model weights as numpy array (flattened to 1D)
@@ -535,50 +535,77 @@ class ShardedFederatedLearningSystem:
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"Model file not found: {filepath}")
 
+        # Determine file type and get appropriate loader
         if filepath.endswith('.npy'):
-            model = np.load(filepath)
-
+            loader_name = 'numpy'
         elif filepath.endswith('.npz'):
-            data = np.load(filepath)
-            # Try to extract model from 'model' key or first array
-            if 'model' in data:
-                model = data['model']
-            else:
-                # Get first array
-                model = data[list(data.keys())[0]]
-
+            loader_name = 'numpy_compressed'
         elif filepath.endswith('.pt'):
-            # Load PyTorch model
-            if not TORCH_AVAILABLE:
-                raise ImportError("PyTorch not installed. Install with: pip install torch")
-
-            try:
-                # Load PyTorch checkpoint
-                checkpoint = torch.load(filepath, map_location='cpu')
-                model = self._extract_weights_from_pytorch(checkpoint)
-
-                if VERBOSE:
-                    print(f"[OK] Extracted weights from PyTorch model (shape: {model.shape})")
-
-            except Exception as e:
-                raise ValueError(f"Failed to load PyTorch model: {e}")
-
+            loader_name = 'pytorch'
+        elif filepath.endswith('.safetensors'):
+            loader_name = 'safetensors'
         else:
-            raise ValueError(f"Unsupported file format: {filepath}. Use .npy, .npz, or .pt")
+            raise ValueError(f"Unsupported file format: {filepath}. "
+                           "Use .npy, .npz, .pt, or .safetensors")
 
-        return model.astype(np.float32)
+        try:
+            # Load model using registry
+            loaded_model = registry.get(loader_name, model_path=filepath, map_location='cpu')
+            
+            # Extract flattened weights
+            weights = self._extract_weights_from_loaded_model(loaded_model, loader_name)
+            
+            if VERBOSE:
+                print(f"[OK] Extracted weights from model (shape: {weights.shape})")
 
-    def _extract_weights_from_pytorch(self, checkpoint) -> np.ndarray:
+            return weights.astype(np.float32)
+
+        except Exception as e:
+            raise ValueError(f"Failed to load model from {filepath}: {e}")
+
+    def _extract_weights_from_loaded_model(self, loaded_model: Any, model_type: str) -> np.ndarray:
         """
-        Extract weights from PyTorch model/checkpoint
+        Extract flattened weights from loaded model based on type.
 
         Args:
-            checkpoint: Either a PyTorch model or state_dict
+            loaded_model: Model object returned by registry
+            model_type: Type of model ('numpy', 'numpy_compressed', 'pytorch', 'safetensors')
 
         Returns:
             Flattened weights as numpy array
         """
-        import torch
+        if model_type in ('numpy', 'numpy_compressed'):
+            # Already a numpy array
+            if isinstance(loaded_model, np.ndarray):
+                return loaded_model.flatten()
+            else:
+                raise ValueError(f"Expected numpy array, got {type(loaded_model)}")
+
+        elif model_type == 'pytorch':
+            # PyTorch checkpoint or model object
+            return self._extract_weights_from_pytorch(loaded_model)
+
+        elif model_type == 'safetensors':
+            # Dictionary of torch tensors from safetensors
+            return self._extract_weights_from_dict(loaded_model)
+
+        else:
+            raise ValueError(f"Unknown model type: {model_type}")
+
+    def _extract_weights_from_pytorch(self, checkpoint) -> np.ndarray:
+        """
+        Extract weights from PyTorch model/checkpoint.
+
+        Args:
+            checkpoint: Either a PyTorch model, state_dict, or checkpoint dict
+
+        Returns:
+            Flattened weights as numpy array
+        """
+        try:
+            import torch
+        except ImportError:
+            raise ImportError("PyTorch not available for model extraction")
 
         # Check if it's a state_dict (from model.state_dict()) or full model
         if isinstance(checkpoint, dict) and 'state_dict' in checkpoint:
@@ -600,6 +627,40 @@ class ShardedFederatedLearningSystem:
 
             # Convert to numpy and flatten
             weights = param.detach().cpu().numpy().flatten()
+            weights_list.append(weights)
+
+        # Concatenate all weights
+        all_weights = np.concatenate(weights_list)
+
+        if VERBOSE:
+            print(f"[OK] Total parameters extracted: {len(all_weights)}")
+
+        return all_weights
+
+    def _extract_weights_from_dict(self, state_dict: Dict[str, Any]) -> np.ndarray:
+        """
+        Extract weights from a dictionary of tensors (e.g., from safetensors).
+
+        Args:
+            state_dict: Dict mapping layer names to torch tensors or numpy arrays
+
+        Returns:
+            Flattened weights as numpy array
+        """
+        weights_list = []
+
+        for layer_name, param in state_dict.items():
+            if VERBOSE:
+                print(f"  Layer: {layer_name}, shape: {param.shape}")
+
+            # Convert to numpy and flatten
+            if hasattr(param, 'detach'):
+                # torch.Tensor
+                weights = param.detach().cpu().numpy().flatten()
+            else:
+                # Already numpy
+                weights = np.asarray(param).flatten()
+
             weights_list.append(weights)
 
         # Concatenate all weights

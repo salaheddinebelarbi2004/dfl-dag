@@ -8,12 +8,12 @@
   "metrics": [
     {
       "round_num": 1,
-      "timestamp": 1777286765.2163172,
+      "timestamp": 1779447192.4370139,
       "steps": {
         "1_broadcast": {
           "round_num": 0,
-          "timestamp": 1777286765.2163172,
-          "model_hash": "71a110709443e4ea5a0e4ccb459e58c686d41b34987cb5d966a141ae0fbd8c29",
+          "timestamp": 1779447192.4370139,
+          "model_hash": "ff15980975f523350af3daf88462ce97c6eb7389944352ff06f30108488e9b8d",
           "model_shape": [
             99074
           ],
@@ -25,51 +25,51 @@
           "clients": [
             {
               "client_id": "client_0",
-              "gradient_norm": 0.1805422157049179
+              "gradient_norm": 0.25044479966163635
             },
             {
               "client_id": "client_1",
-              "gradient_norm": 0.18556296825408936
+              "gradient_norm": 0.24987123906612396
             },
             {
               "client_id": "client_2",
-              "gradient_norm": 0.18310227990150452
+              "gradient_norm": 0.25825026631355286
             },
             {
               "client_id": "client_3",
-              "gradient_norm": 0.18353301286697388
+              "gradient_norm": 0.26481935381889343
             },
             {
               "client_id": "client_4",
-              "gradient_norm": 0.1794496774673462
+              "gradient_norm": 0.26467153429985046
             },
             {
               "client_id": "client_5",
-              "gradient_norm": 0.1961200088262558
+              "gradient_norm": 0.2676007151603699
             },
             {
               "client_id": "client_6",
-              "gradient_norm": 0.17896011471748352
+              "gradient_norm": 0.2589976489543915
             },
             {
               "client_id": "client_7",
-              "gradient_norm": 0.1779569387435913
+              "gradient_norm": 0.2625695765018463
             },
             {
               "client_id": "client_8",
-              "gradient_norm": 0.16559827327728271
+              "gradient_norm": 0.24906153976917267
             },
             {
               "client_id": "client_9",
-              "gradient_norm": 0.1595594435930252
+              "gradient_norm": 0.25863489508628845
             },
             {
               "client_id": "client_10",
-              "gradient_norm": 0.17906054854393005
+              "gradient_norm": 0.2606695294380188
             },
             {
               "client_id": "client_11",
-              "gradient_norm": 0.17562268674373627
+              "gradient_norm": 0.2621975541114807
             }
           ]
         },
@@ -78,27 +78,27 @@
             "shard_0": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.1827495551055224
+              "aggregation_norm": 0.2541465380172601
             },
             "shard_1": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.18249320099266172
+              "aggregation_norm": 0.26192956411005597
             },
             "shard_2": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.16952844422109362
+              "aggregation_norm": 0.2554241562590787
             }
           }
         },
         "10_global_aggregation": {
           "round_num": 1,
-          "timestamp": 1777286769.2873151,
+          "timestamp": 1779447198.1931047,
           "broadcast": {
             "round_num": 1,
-            "timestamp": 1777286769.2873151,
-            "model_hash": "71a110709443e4ea5a0e4ccb459e58c686d41b34987cb5d966a141ae0fbd8c29",
+            "timestamp": 1779447198.1931047,
+            "model_hash": "ff15980975f523350af3daf88462ce97c6eb7389944352ff06f30108488e9b8d",
             "model_shape": [
               99074
             ],
@@ -106,15 +106,15 @@
           },
           "collection": {
             "round_num": 1,
-            "timestamp": 1777286769.290314,
+            "timestamp": 1779447198.1971009,
             "num_updates_received": 3,
             "expected_updates": 3,
             "complete": true
           },
           "aggregation": {
             "round_num": 1,
-            "current_model_hash": "71a110709443e4ea5a0e4ccb459e58c686d41b34987cb5d966a141ae0fbd8c29",
-            "timestamp": 1777286769.293313,
+            "current_model_hash": "ff15980975f523350af3daf88462ce97c6eb7389944352ff06f30108488e9b8d",
+            "timestamp": 1779447198.2001789,
             "aggregation": {
               "round_num": 1,
               "num_shards": 3,
@@ -136,58 +136,58 @@
                   "verification_rate": 1.0
                 }
               ],
-              "timestamp": 1777286769.293313,
+              "timestamp": 1779447198.2001789,
               "aggregation_successful": true
             },
             "model_update": {
               "learning_rate": 1.0,
-              "update_norm": 0.1781364170013794,
-              "model_change_norm": 0.17813641700137936
+              "update_norm": 0.2568367947256877,
+              "model_change_norm": 0.2568367947256877
             },
-            "new_model_hash": "7f2c2805a52e48fff3c326645746bc516980b66a501511c8e25391e32bdd692a",
+            "new_model_hash": "278a502fca0f6a542157319ec4ce0e4f170ce9491469e56adcd659f03c6e6eac",
             "success": true
           }
         }
       },
       "gradient_stats": {
-        "avg_gradient_norm": 0.17875568072001138,
-        "max_gradient_norm": 0.1961200088262558,
-        "min_gradient_norm": 0.1595594435930252,
-        "std_gradient_norm": 0.00887622990481036,
+        "avg_gradient_norm": 0.2589823876818021,
+        "max_gradient_norm": 0.2676007151603699,
+        "min_gradient_norm": 0.24906153976917267,
+        "std_gradient_norm": 0.005928374178998481,
         "total_clients_trained": 12
       },
       "shard_contributions": {
         "shard_0": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.1827495551055224
+          "update_norm": 0.2541465380172601
         },
         "shard_1": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.18249320099266172
+          "update_norm": 0.26192956411005597
         },
         "shard_2": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.16952844422109362
+          "update_norm": 0.2554241562590787
         }
       },
       "model_changes": {
-        "weight_change_norm": 0.17813641700137936,
-        "global_model_norm": 12.871986545301864,
-        "model_change_ratio": 0.013840665883492318
+        "weight_change_norm": 0.2568367947256877,
+        "global_model_norm": 19.761078154583057,
+        "model_change_ratio": 0.012998326502419
       },
-      "elapsed_seconds": 4.077338695526123
+      "elapsed_seconds": 5.778221607208252
     },
     {
       "round_num": 2,
-      "timestamp": 1777286769.3087263,
+      "timestamp": 1779447198.217236,
       "steps": {
         "1_broadcast": {
           "round_num": 1,
-          "timestamp": 1777286769.3087263,
-          "model_hash": "7f2c2805a52e48fff3c326645746bc516980b66a501511c8e25391e32bdd692a",
+          "timestamp": 1779447198.217236,
+          "model_hash": "278a502fca0f6a542157319ec4ce0e4f170ce9491469e56adcd659f03c6e6eac",
           "model_shape": [
             99074
           ],
@@ -199,51 +199,51 @@
           "clients": [
             {
               "client_id": "client_0",
-              "gradient_norm": 0.10378482750608677
+              "gradient_norm": 0.20960964702699447
             },
             {
               "client_id": "client_1",
-              "gradient_norm": 0.10738799944744493
+              "gradient_norm": 0.2079239957909911
             },
             {
               "client_id": "client_2",
-              "gradient_norm": 0.1035052213076826
+              "gradient_norm": 0.21457396323465502
             },
             {
               "client_id": "client_3",
-              "gradient_norm": 0.1072834177643505
+              "gradient_norm": 0.22104364834608076
             },
             {
               "client_id": "client_4",
-              "gradient_norm": 0.10734155981891882
+              "gradient_norm": 0.22229730767850397
             },
             {
               "client_id": "client_5",
-              "gradient_norm": 0.11543148134090409
+              "gradient_norm": 0.22330057672464027
             },
             {
               "client_id": "client_6",
-              "gradient_norm": 0.10571900699789889
+              "gradient_norm": 0.21446483687823262
             },
             {
               "client_id": "client_7",
-              "gradient_norm": 0.10700144823416247
+              "gradient_norm": 0.21941271000821702
             },
             {
               "client_id": "client_8",
-              "gradient_norm": 0.09884221275966434
+              "gradient_norm": 0.20580962491665336
             },
             {
               "client_id": "client_9",
-              "gradient_norm": 0.09379365332601679
+              "gradient_norm": 0.21036732525151178
             },
             {
               "client_id": "client_10",
-              "gradient_norm": 0.11125005977009977
+              "gradient_norm": 0.21568214102145788
             },
             {
               "client_id": "client_11",
-              "gradient_norm": 0.10070383819927622
+              "gradient_norm": 0.21948817632084758
             }
           ]
         },
@@ -252,27 +252,27 @@
             "shard_0": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.10465057935774146
+              "aggregation_norm": 0.21122393878256043
             },
             "shard_1": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.107358025453864
+              "aggregation_norm": 0.21784321910550694
             },
             "shard_2": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.10020630006627361
+              "aggregation_norm": 0.2103846304175987
             }
           }
         },
         "10_global_aggregation": {
           "round_num": 2,
-          "timestamp": 1777286774.1721227,
+          "timestamp": 1779447203.6857717,
           "broadcast": {
             "round_num": 2,
-            "timestamp": 1777286774.1721227,
-            "model_hash": "7f2c2805a52e48fff3c326645746bc516980b66a501511c8e25391e32bdd692a",
+            "timestamp": 1779447203.6857717,
+            "model_hash": "278a502fca0f6a542157319ec4ce0e4f170ce9491469e56adcd659f03c6e6eac",
             "model_shape": [
               99074
             ],
@@ -280,15 +280,15 @@
           },
           "collection": {
             "round_num": 2,
-            "timestamp": 1777286774.1758137,
+            "timestamp": 1779447203.6857717,
             "num_updates_received": 3,
             "expected_updates": 3,
             "complete": true
           },
           "aggregation": {
             "round_num": 2,
-            "current_model_hash": "7f2c2805a52e48fff3c326645746bc516980b66a501511c8e25391e32bdd692a",
-            "timestamp": 1777286774.1788106,
+            "current_model_hash": "278a502fca0f6a542157319ec4ce0e4f170ce9491469e56adcd659f03c6e6eac",
+            "timestamp": 1779447203.6944354,
             "aggregation": {
               "round_num": 2,
               "num_shards": 3,
@@ -310,58 +310,58 @@
                   "verification_rate": 1.0
                 }
               ],
-              "timestamp": 1777286774.1788106,
+              "timestamp": 1779447203.6944354,
               "aggregation_successful": true
             },
             "model_update": {
               "learning_rate": 1.0,
-              "update_norm": 0.10373369173120375,
-              "model_change_norm": 0.10373369173120378
+              "update_norm": 0.21279489904182053,
+              "model_change_norm": 0.21279489904182053
             },
-            "new_model_hash": "19402f6aee688ade9c4ffa5ac4c0b92c4321cbe4443ab2cd18597081ec11ade8",
+            "new_model_hash": "1bf933aee234b83015fdf5c0e67b6e77e3b162c56032d5023f27670a41e01d01",
             "success": true
           }
         }
       },
       "gradient_stats": {
-        "avg_gradient_norm": 0.10517039387270884,
-        "max_gradient_norm": 0.11543148134090409,
-        "min_gradient_norm": 0.09379365332601679,
-        "std_gradient_norm": 0.005432321564680054,
+        "avg_gradient_norm": 0.21533116276656547,
+        "max_gradient_norm": 0.22330057672464027,
+        "min_gradient_norm": 0.20580962491665336,
+        "std_gradient_norm": 0.005649183592331894,
         "total_clients_trained": 12
       },
       "shard_contributions": {
         "shard_0": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.10465057935774146
+          "update_norm": 0.21122393878256043
         },
         "shard_1": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.107358025453864
+          "update_norm": 0.21784321910550694
         },
         "shard_2": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.10020630006627361
+          "update_norm": 0.2103846304175987
         }
       },
       "model_changes": {
-        "weight_change_norm": 0.10373369173120378,
-        "global_model_norm": 12.874614556441347,
-        "model_change_ratio": 0.008058871976406527
+        "weight_change_norm": 0.21279489904182053,
+        "global_model_norm": 19.76746122258,
+        "model_change_ratio": 0.010768385068341251
       },
-      "elapsed_seconds": 4.8854382038116455
+      "elapsed_seconds": 5.492834091186523
     },
     {
       "round_num": 3,
-      "timestamp": 1777286774.1964457,
+      "timestamp": 1779447203.7125328,
       "steps": {
         "1_broadcast": {
           "round_num": 2,
-          "timestamp": 1777286774.1964457,
-          "model_hash": "19402f6aee688ade9c4ffa5ac4c0b92c4321cbe4443ab2cd18597081ec11ade8",
+          "timestamp": 1779447203.7135332,
+          "model_hash": "1bf933aee234b83015fdf5c0e67b6e77e3b162c56032d5023f27670a41e01d01",
           "model_shape": [
             99074
           ],
@@ -373,51 +373,51 @@
           "clients": [
             {
               "client_id": "client_0",
-              "gradient_norm": 0.09365860750274572
+              "gradient_norm": 0.18740966546473306
             },
             {
               "client_id": "client_1",
-              "gradient_norm": 0.09854968821036562
+              "gradient_norm": 0.18420050421341014
             },
             {
               "client_id": "client_2",
-              "gradient_norm": 0.09030876760014526
+              "gradient_norm": 0.19183633983355036
             },
             {
               "client_id": "client_3",
-              "gradient_norm": 0.09473640784332946
+              "gradient_norm": 0.19538871154197987
             },
             {
               "client_id": "client_4",
-              "gradient_norm": 0.09780950069776945
+              "gradient_norm": 0.19794399108505253
             },
             {
               "client_id": "client_5",
-              "gradient_norm": 0.09440156391429141
+              "gradient_norm": 0.19856198226977528
             },
             {
               "client_id": "client_6",
-              "gradient_norm": 0.09570502165954192
+              "gradient_norm": 0.1898774498258485
             },
             {
               "client_id": "client_7",
-              "gradient_norm": 0.09173501133371065
+              "gradient_norm": 0.19481831328662866
             },
             {
               "client_id": "client_8",
-              "gradient_norm": 0.09322514154531882
+              "gradient_norm": 0.18407088317149473
             },
             {
               "client_id": "client_9",
-              "gradient_norm": 0.08785967261800515
+              "gradient_norm": 0.1858688261182067
             },
             {
               "client_id": "client_10",
-              "gradient_norm": 0.1004296063352813
+              "gradient_norm": 0.19349521424958402
             },
             {
               "client_id": "client_11",
-              "gradient_norm": 0.09049032191961606
+              "gradient_norm": 0.19397936193203935
             }
           ]
         },
@@ -426,27 +426,27 @@
             "shard_0": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.0934331368997591
+              "aggregation_norm": 0.18750724884243494
             },
             "shard_1": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.09379382657856293
+              "aggregation_norm": 0.19347913479814086
             },
             "shard_2": {
               "updates_aggregated": 4,
               "verification_rate": 1.0,
-              "aggregation_norm": 0.09184200317956208
+              "aggregation_norm": 0.1867441233894951
             }
           }
         },
         "10_global_aggregation": {
           "round_num": 3,
-          "timestamp": 1777286779.1216207,
+          "timestamp": 1779447209.0030653,
           "broadcast": {
             "round_num": 3,
-            "timestamp": 1777286779.1216207,
-            "model_hash": "19402f6aee688ade9c4ffa5ac4c0b92c4321cbe4443ab2cd18597081ec11ade8",
+            "timestamp": 1779447209.0030653,
+            "model_hash": "1bf933aee234b83015fdf5c0e67b6e77e3b162c56032d5023f27670a41e01d01",
             "model_shape": [
               99074
             ],
@@ -454,15 +454,15 @@
           },
           "collection": {
             "round_num": 3,
-            "timestamp": 1777286779.1216207,
+            "timestamp": 1779447209.0059435,
             "num_updates_received": 3,
             "expected_updates": 3,
             "complete": true
           },
           "aggregation": {
             "round_num": 3,
-            "current_model_hash": "19402f6aee688ade9c4ffa5ac4c0b92c4321cbe4443ab2cd18597081ec11ade8",
-            "timestamp": 1777286779.1216207,
+            "current_model_hash": "1bf933aee234b83015fdf5c0e67b6e77e3b162c56032d5023f27670a41e01d01",
+            "timestamp": 1779447209.0099678,
             "aggregation": {
               "round_num": 3,
               "num_shards": 3,
@@ -484,135 +484,409 @@
                   "verification_rate": 1.0
                 }
               ],
-              "timestamp": 1777286779.1216207,
+              "timestamp": 1779447209.0099678,
               "aggregation_successful": true
             },
             "model_update": {
               "learning_rate": 1.0,
-              "update_norm": 0.0926007575744779,
-              "model_change_norm": 0.0926007575744779
+              "update_norm": 0.18883091148442568,
+              "model_change_norm": 0.18883091148442568
             },
-            "new_model_hash": "5285626cb8f32e15d2c6f1f44d0e28a6f2678955ba191639d1ae9c198209a7da",
+            "new_model_hash": "37bada4197f4b5276a700a723a49355b1306ee810a26d7b5daa4d1acabcb7cd7",
             "success": true
           }
         }
       },
       "gradient_stats": {
-        "avg_gradient_norm": 0.09407577593167672,
-        "max_gradient_norm": 0.1004296063352813,
-        "min_gradient_norm": 0.08785967261800515,
-        "std_gradient_norm": 0.0035306671511591945,
+        "avg_gradient_norm": 0.1914542702493586,
+        "max_gradient_norm": 0.19856198226977528,
+        "min_gradient_norm": 0.18407088317149473,
+        "std_gradient_norm": 0.004892971840789847,
         "total_clients_trained": 12
       },
       "shard_contributions": {
         "shard_0": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.0934331368997591
+          "update_norm": 0.18750724884243494
         },
         "shard_1": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.09379382657856293
+          "update_norm": 0.19347913479814086
         },
         "shard_2": {
           "num_updates": 4,
           "verification_rate": 1.0,
-          "update_norm": 0.09184200317956208
+          "update_norm": 0.1867441233894951
         }
       },
       "model_changes": {
-        "weight_change_norm": 0.0926007575744779,
-        "global_model_norm": 12.877999606242824,
-        "model_change_ratio": 0.007192507169562089
+        "weight_change_norm": 0.18883091148442568,
+        "global_model_norm": 19.776590913891727,
+        "model_change_ratio": 0.00955261321940531
       },
-      "elapsed_seconds": 4.949741840362549
+      "elapsed_seconds": 5.310655355453491
     },
     {
       "round_num": 4,
-      "timestamp": 1777286779.1481855,
+      "timestamp": 1779447209.0270398,
       "steps": {
         "1_broadcast": {
           "round_num": 3,
-          "timestamp": 1777286779.1481855,
-          "model_hash": "5285626cb8f32e15d2c6f1f44d0e28a6f2678955ba191639d1ae9c198209a7da",
+          "timestamp": 1779447209.0270398,
+          "model_hash": "37bada4197f4b5276a700a723a49355b1306ee810a26d7b5daa4d1acabcb7cd7",
           "model_shape": [
             99074
           ],
           "num_shards_receiving": 3
         },
         "2-6_client_updates": {
-          "successful_submissions": 1,
-          "failed_submissions": 11,
+          "successful_submissions": 12,
+          "failed_submissions": 0,
           "clients": [
             {
               "client_id": "client_0",
-              "gradient_norm": 0.09228635057879257
+              "gradient_norm": 0.17066756321208237
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.16542063145920907
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.17562058449419937
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.17776101802547184
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.17827077911309666
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.1789018543291074
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.17152535122453502
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.17767839505064992
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.16812072888308557
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.1663235056687436
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.17422039606328532
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.17716402510677665
             }
           ]
         },
         "7-9_shard_aggregation": {
           "shard_results": {
             "shard_0": {
-              "error": "Unable to allocate 774. KiB for an array with shape (99074,) and data type float64",
-              "aggregation_failed": true
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.17005199924517475
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.17472133867001635
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.16852037165964645
             }
           }
         },
         "10_global_aggregation": {
-          "error": "Unable to allocate 774. KiB for an array with shape (99074,) and data type float64",
-          "aggregation_failed": true
+          "round_num": 4,
+          "timestamp": 1779447214.2879307,
+          "broadcast": {
+            "round_num": 4,
+            "timestamp": 1779447214.2879307,
+            "model_hash": "37bada4197f4b5276a700a723a49355b1306ee810a26d7b5daa4d1acabcb7cd7",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 4,
+            "timestamp": 1779447214.289755,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 4,
+            "current_model_hash": "37bada4197f4b5276a700a723a49355b1306ee810a26d7b5daa4d1acabcb7cd7",
+            "timestamp": 1779447214.2937195,
+            "aggregation": {
+              "round_num": 4,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1779447214.2937195,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.1706837705925877,
+              "model_change_norm": 0.17068377059258769
+            },
+            "new_model_hash": "f63a5a168de8efebeb10433472eeca7f792a4e9abbfc4625227852d7417f3d54",
+            "success": true
+          }
         }
       },
       "gradient_stats": {
-        "avg_gradient_norm": 0.09228635057879257,
-        "max_gradient_norm": 0.09228635057879257,
-        "min_gradient_norm": 0.09228635057879257,
-        "std_gradient_norm": 0.0,
-        "total_clients_trained": 1
+        "avg_gradient_norm": 0.1734729027191869,
+        "max_gradient_norm": 0.1789018543291074,
+        "min_gradient_norm": 0.16542063145920907,
+        "std_gradient_norm": 0.0046870788865586354,
+        "total_clients_trained": 12
       },
-      "shard_contributions": {},
-      "model_changes": {},
-      "elapsed_seconds": 0.48093748092651367
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.17005199924517475
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.17472133867001635
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.16852037165964645
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.17068377059258769,
+        "global_model_norm": 19.787281856168793,
+        "model_change_ratio": 0.008630596205860123
+      },
+      "elapsed_seconds": 5.280735731124878
     },
     {
       "round_num": 5,
-      "timestamp": 1777286779.6311185,
+      "timestamp": 1779447214.310773,
       "steps": {
         "1_broadcast": {
           "round_num": 4,
-          "timestamp": 1777286779.6311185,
-          "model_hash": "5285626cb8f32e15d2c6f1f44d0e28a6f2678955ba191639d1ae9c198209a7da",
+          "timestamp": 1779447214.310773,
+          "model_hash": "f63a5a168de8efebeb10433472eeca7f792a4e9abbfc4625227852d7417f3d54",
           "model_shape": [
             99074
           ],
           "num_shards_receiving": 3
         },
         "2-6_client_updates": {
-          "successful_submissions": 0,
-          "failed_submissions": 12,
-          "clients": []
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.15629467260698654
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.14985655127820072
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.16029626646246015
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.16134354271887072
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.16259508676711665
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.16572376463771268
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.1556775589517561
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.16150042030161837
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.15392970164047867
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.14990845805403344
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.1597169920450797
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.1606307999883079
+            }
+          ]
         },
         "7-9_shard_aggregation": {
-          "shard_results": {}
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.1543634102739099
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.15905396605336108
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.15299092259569416
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 5,
+          "timestamp": 1779447219.5657065,
+          "broadcast": {
+            "round_num": 5,
+            "timestamp": 1779447219.5657065,
+            "model_hash": "f63a5a168de8efebeb10433472eeca7f792a4e9abbfc4625227852d7417f3d54",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 5,
+            "timestamp": 1779447219.5683231,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 5,
+            "current_model_hash": "f63a5a168de8efebeb10433472eeca7f792a4e9abbfc4625227852d7417f3d54",
+            "timestamp": 1779447219.5683231,
+            "aggregation": {
+              "round_num": 5,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1779447219.5683231,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.15499918549332425,
+              "model_change_norm": 0.15499918549332425
+            },
+            "new_model_hash": "781c6b78b91cc86643d8a9ceb6c8799de44117c3c383e3e1057667b8568f9fb2",
+            "success": true
+          }
         }
       },
-      "gradient_stats": {},
-      "shard_contributions": {},
-      "model_changes": {},
-      "elapsed_seconds": 0.017839670181274414
+      "gradient_stats": {
+        "avg_gradient_norm": 0.15812281795438513,
+        "max_gradient_norm": 0.16572376463771268,
+        "min_gradient_norm": 0.14985655127820072,
+        "std_gradient_norm": 0.004794289941598103,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.1543634102739099
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.15905396605336108
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.15299092259569416
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.15499918549332425,
+        "global_model_norm": 19.798880596575955,
+        "model_change_ratio": 0.007833273237914164
+      },
+      "elapsed_seconds": 5.274614572525024
     }
   ],
   "final_stats": {
     "global_coordinator": {
-      "round_num": 4,
-      "global_model_hash": "5285626cb8f32e15d2c6f1f44d0e28a6f2678955ba191639d1ae9c198209a7da",
-      "broadcasts": 9,
-      "collections": 4,
+      "round_num": 5,
+      "global_model_hash": "781c6b78b91cc86643d8a9ceb6c8799de44117c3c383e3e1057667b8568f9fb2",
+      "broadcasts": 10,
+      "collections": 5,
       "aggregator_stats": {
         "num_shards": 3,
-        "round_num": 4,
-        "total_aggregations": 3,
+        "round_num": 5,
+        "total_aggregations": 5,
         "successful_aggregations": 0,
         "aggregation_success_rate": 0.0
       }
@@ -622,74 +896,74 @@
         "chief_id": "client_2",
         "shard_id": "shard_0",
         "is_active": true,
-        "updates_verified": 13,
+        "updates_verified": 20,
         "updates_rejected": 0,
-        "aggregations_performed": 3,
+        "aggregations_performed": 5,
         "verification_success_rate": 1.0,
         "capabilities": {
-          "uptime": 0.9751593107893781,
-          "bandwidth_mbps": 51.18946305596172,
-          "compute_capacity": 0.9274168310164292
+          "uptime": 0.956482528856321,
+          "bandwidth_mbps": 78.96300003634455,
+          "compute_capacity": 1.1468036414842375
         }
       },
       "shard_1": {
         "chief_id": "client_5",
         "shard_id": "shard_1",
         "is_active": true,
-        "updates_verified": 12,
+        "updates_verified": 20,
         "updates_rejected": 0,
-        "aggregations_performed": 3,
+        "aggregations_performed": 5,
         "verification_success_rate": 1.0,
         "capabilities": {
-          "uptime": 0.9862384470654845,
-          "bandwidth_mbps": 100.29764787712881,
-          "compute_capacity": 0.8901171776631019
+          "uptime": 0.9750422799520658,
+          "bandwidth_mbps": 128.4075319390081,
+          "compute_capacity": 1.0033533343423724
         }
       },
       "shard_2": {
         "chief_id": "client_8",
         "shard_id": "shard_2",
         "is_active": true,
-        "updates_verified": 12,
+        "updates_verified": 20,
         "updates_rejected": 0,
-        "aggregations_performed": 3,
+        "aggregations_performed": 5,
         "verification_success_rate": 1.0,
         "capabilities": {
-          "uptime": 0.9955643511728216,
-          "bandwidth_mbps": 103.27695879664651,
-          "compute_capacity": 1.0649197924492504
+          "uptime": 0.9514230911767598,
+          "bandwidth_mbps": 61.58085215955113,
+          "compute_capacity": 0.9443293072205619
         }
       }
     },
     "dag_stats": {
-      "global_model_history_length": 5,
+      "global_model_history_length": 6,
       "shard_stats": {
         "shard_0": {
-          "total_nodes": 14,
-          "total_edges": 13,
+          "total_nodes": 21,
+          "total_edges": 20,
           "status_breakdown": {
             "finalized": 1,
-            "verified": 13
+            "verified": 20
           },
           "finalized_chain_length": 1,
           "num_clients": 5
         },
         "shard_1": {
-          "total_nodes": 13,
-          "total_edges": 12,
+          "total_nodes": 21,
+          "total_edges": 20,
           "status_breakdown": {
             "finalized": 1,
-            "verified": 12
+            "verified": 20
           },
           "finalized_chain_length": 1,
           "num_clients": 5
         },
         "shard_2": {
-          "total_nodes": 13,
-          "total_edges": 12,
+          "total_nodes": 21,
+          "total_edges": 20,
           "status_breakdown": {
             "finalized": 1,
-            "verified": 12
+            "verified": 20
           },
           "finalized_chain_length": 1,
           "num_clients": 5
@@ -700,86 +974,86 @@
       {
         "client_id": "client_0",
         "shard_id": "shard_0",
-        "round_num": 4,
-        "total_samples_trained": 12104,
-        "rounds_completed": 4
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_1",
         "shard_id": "shard_0",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_2",
         "shard_id": "shard_0",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_3",
         "shard_id": "shard_0",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_4",
         "shard_id": "shard_1",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_5",
         "shard_id": "shard_1",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_6",
         "shard_id": "shard_1",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_7",
         "shard_id": "shard_1",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_8",
         "shard_id": "shard_2",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_9",
         "shard_id": "shard_2",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24290,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_10",
         "shard_id": "shard_2",
-        "round_num": 3,
-        "total_samples_trained": 9078,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24280,
+        "rounds_completed": 5
       },
       {
         "client_id": "client_11",
         "shard_id": "shard_2",
-        "round_num": 3,
-        "total_samples_trained": 9090,
-        "rounds_completed": 3
+        "round_num": 5,
+        "total_samples_trained": 24280,
+        "rounds_completed": 5
       }
     ]
   }
