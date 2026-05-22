@@ -521,7 +521,7 @@ class ShardedFederatedLearningSystem:
     def _load_pretrained_model(self, filepath: str) -> np.ndarray:
         """
         Load pre-trained model from file using model_registry.
-        
+
         Supports: .npy, .npz, .pt (PyTorch), .safetensors
 
         Args:
@@ -551,10 +551,10 @@ class ShardedFederatedLearningSystem:
         try:
             # Load model using registry
             loaded_model = registry.get(loader_name, model_path=filepath, map_location='cpu')
-            
+
             # Extract flattened weights
             weights = self._extract_weights_from_loaded_model(loaded_model, loader_name)
-            
+
             if VERBOSE:
                 print(f"[OK] Extracted weights from model (shape: {weights.shape})")
 
