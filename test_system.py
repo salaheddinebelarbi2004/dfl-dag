@@ -11,7 +11,7 @@ from typing import Dict, Any
 from federated_learning_system import ShardedFederatedLearningSystem
 from client import FederatedLearningClient, create_synthetic_client_data
 from polynomial_proxy import PolynomialProxyFactory
-from zkp_proofs import ZKPFactory
+from zkp_proofs import ZKPFactory, Groth16Statement
 from robust_aggregation import RobustAggregator, AggregationMethod
 from shard_chief import ShardChiefElector, ShardChiefCandidate, NodeCapabilities
 from dag_system import ShardedDAG
@@ -78,7 +78,17 @@ def test_zkp_system():
     
     # Verify proof
     verifier = ZKPFactory.get_verifier()
-    is_valid, details = verifier.verify_proof(proof, gradient, poly)
+    statement_data = proof.metadata.get("public_statement", {}) if hasattr(proof, "metadata") else {}
+    statement = Groth16Statement(
+        one=statement_data.get("one", 1),
+        h_w_old=statement_data.get("h_w_old", ""),
+        h_w_new=statement_data.get("h_w_new", ""),
+        model_hash=statement_data.get("model_hash", ""),
+        round_num=statement_data.get("round_num", 1),
+        shard_id=statement_data.get("shard_id", "shard_0"),
+        public_inputs=statement_data.get("public_inputs", []),
+    )
+    is_valid, details = verifier.verify_proof(proof, gradient, poly, statement=statement)
     
     print(f"✓ Verified ZKP proof")
     print(f"  Valid: {is_valid}")

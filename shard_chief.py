@@ -16,7 +16,7 @@ from federated_learning_config import (
     SHARD_CHIEF_SCORE_GAMMA, TOP_K_CANDIDATES
 )
 from robust_aggregation import RobustAggregator, AggregationMethod
-from zkp_proofs import ZKProof, ZKPVerifier, ZKPFactory
+from zkp_proofs import ZKProof, ZKPVerifier, ZKPFactory, Groth16Statement
 
 import hashlib
 
@@ -127,12 +127,28 @@ class ShardChief:
         details = []
         
         for gradient, proof, client_id in zip(gradients, proofs, client_ids):
+            public_statement = None
+            if hasattr(proof, "metadata") and isinstance(proof.metadata, dict):
+                statement_data = proof.metadata.get("public_statement")
+                if isinstance(statement_data, dict) and statement_data:
+                    public_statement = Groth16Statement(
+                        one=statement_data.get("one", 1),
+                        h_w_old=statement_data.get("h_w_old", ""),
+                        h_w_new=statement_data.get("h_w_new", ""),
+                        model_hash=statement_data.get("model_hash", ""),
+                        round_num=statement_data.get("round_num", 0),
+                        shard_id=statement_data.get("shard_id", self.shard_id),
+                        public_inputs=statement_data.get("public_inputs", []),
+                    )
+
             is_valid, detail = verifier.verify_proof(
                 proof, gradient,
-                verifier_id=self.chief_id
+                verifier_id=self.chief_id,
+                statement=public_statement,
             )
             results.append(is_valid)
             detail["client_id"] = client_id
+            detail["protocol"] = getattr(proof, "metadata", {}).get("protocol", "Groth16") if hasattr(proof, "metadata") else "Groth16"
             details.append(detail)
             
             if is_valid:

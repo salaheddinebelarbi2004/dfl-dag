@@ -15,7 +15,7 @@ from federated_learning_config import (
     INPUT_DIM, HIDDEN_DIM, OUTPUT_DIM, GRADIENT_CLIP
 )
 from polynomial_proxy import PolynomialProxy, PolynomialProxyFactory
-from zkp_proofs import ZKProof, ZKPGenerator, ZKPFactory
+from zkp_proofs import ZKProof, ZKPGenerator, ZKPFactory, Groth16Statement
 
 
 @dataclass
@@ -353,20 +353,48 @@ class FederatedLearningClient:
         polynomial_proxy = PolynomialProxyFactory.create_from_update(
             gradient, initial_params
         )
+
+        # Build a lightweight local token witness for VFL-style proving.
+        # In this prototype, use the local label distribution as the token-side witness.
+        local_tokens = self._build_local_token_witness()
         
         # Compute commitment: Ci = Commit(∆Wi)
         commitment = self._compute_commitment(gradient)
         
-        # Step 5: Generate ZKP
+        # Step 5: Generate Groth16-compatible proof
         zkp_gen = ZKPFactory.get_generator()
+        current_params = self.local_model.get_params()
+        public_statement = Groth16Statement(
+            one=1,
+            h_w_old=self._compute_hash(initial_params),
+            h_w_new=self._compute_hash(current_params),
+            model_hash=self._compute_hash(current_params),
+            round_num=round_num,
+            shard_id=self.shard_id,
+            public_inputs=[1, len(initial_params), len(current_params)],
+        )
         zkp = zkp_gen.generate_proof(
             gradient,
             initial_params if initial_params is not None else self.local_model.get_params(),
             self.client_id,
             round_num,
             polynomial_proxy,
-            norm_bound=GRADIENT_CLIP
+            norm_bound=GRADIENT_CLIP,
+            initial_params=initial_params,
+            updated_params=current_params,
+            local_tokens=local_tokens,
+            shard_id=self.shard_id,
+            learning_rate=0.0,
         )
+        zkp.metadata["public_statement"] = public_statement.to_dict() if hasattr(public_statement, "to_dict") else {
+            "one": public_statement.one,
+            "h_w_old": public_statement.h_w_old,
+            "h_w_new": public_statement.h_w_new,
+            "model_hash": public_statement.model_hash,
+            "round_num": public_statement.round_num,
+            "shard_id": public_statement.shard_id,
+            "public_inputs": public_statement.public_inputs,
+        }
         
         # Create model hash
         model_params = self.local_model.get_params()
@@ -392,6 +420,27 @@ class FederatedLearningClient:
         }
         
         return update
+
+    def _build_local_token_witness(self) -> np.ndarray:
+        """Build a compact private witness from local labels for VFL proofing."""
+        if self.local_data_y is None:
+            return np.zeros(8, dtype=np.float32)
+
+        labels = self.local_data_y
+        if labels.ndim > 1:
+            label_ids = np.argmax(labels, axis=1)
+        else:
+            label_ids = labels.reshape(-1)
+
+        counts = np.bincount(label_ids.astype(int), minlength=max(2, int(np.max(label_ids)) + 1))
+        stats = np.array([
+            float(len(label_ids)),
+            float(np.mean(label_ids)) if len(label_ids) else 0.0,
+            float(np.std(label_ids)) if len(label_ids) else 0.0,
+            float(np.min(label_ids)) if len(label_ids) else 0.0,
+            float(np.max(label_ids)) if len(label_ids) else 0.0,
+        ], dtype=np.float32)
+        return np.concatenate([stats, counts.astype(np.float32)])
     
     def _compute_commitment(self, gradient: np.ndarray) -> str:
         """
