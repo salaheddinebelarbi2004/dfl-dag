@@ -1,7 +1,26 @@
-p2pnetwork
-flwr==1.5.0
-numpy==1.24.3
-scikit-learn==1.3.0
-pandas==2.0.3
-scipy>=1.10.0
+# Core numerical / scientific stack
+# Lower bounds match the versions this project is verified against
+# (numpy 2.0.2, pandas 2.2.3, scipy 1.14.1, scikit-learn 1.5.2, torch 2.12, matplotlib 3.10).
+numpy>=2.0.2
+pandas>=2.2.3
+scipy>=1.14.1
+scikit-learn>=1.5.2
+matplotlib>=3.10.0
 
+# Model loading (framework-agnostic .pt / .safetensors / .npy / .npz loader)
+torch>=2.12.0
+safetensors>=0.4.0
+
+# Text embeddings. REQUIRED to regenerate real_federated_data/ and malisious/.
+# nlp_embeddings.py degrades to RANDOM embeddings if this is missing, which
+# silently produces meaningless features -- install it before rebuilding data.
+sentence-transformers>=3.0.0
+
+# Excel input for scripts/load_filtered_data.py (Augmented_SpamHamTweets.xlsx)
+openpyxl>=3.1.5
+
+# Peer-to-peer transport, used by deploy/ only (docker_entrypoint.py, p2p_node.py)
+p2pnetwork
+
+# Tests
+pytest>=8.0.0

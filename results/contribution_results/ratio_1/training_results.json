@@ -1,0 +1,1445 @@
+{
+  "system_config": {
+    "num_clients": 12,
+    "num_shards": 3,
+    "num_rounds": 5,
+    "shard_size": 4
+  },
+  "metrics": [
+    {
+      "round_num": 1,
+      "timestamp": 1789502723.3494215,
+      "steps": {
+        "1_broadcast": {
+          "round_num": 0,
+          "timestamp": 1789502723.3495102,
+          "model_hash": "781c6b78b91cc86643d8a9ceb6c8799de44117c3c383e3e1057667b8568f9fb2",
+          "model_shape": [
+            99074
+          ],
+          "num_shards_receiving": 3
+        },
+        "2-6_client_updates": {
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.9999999403953552,
+              "final_loss": 0.4697454360061808,
+              "final_accuracy": 0.7920955125566077,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 1.0,
+              "final_loss": 0.4847231794680868,
+              "final_accuracy": 0.7764512144915603,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.9999999403953552,
+              "final_loss": 0.4720970682566698,
+              "final_accuracy": 0.7941539728283245,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.9999998807907104,
+              "final_loss": 0.4747122521084699,
+              "final_accuracy": 0.7809798270893372,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 1.0,
+              "final_loss": 0.4774942287938273,
+              "final_accuracy": 0.7859201317414574,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 1.0,
+              "final_loss": 0.4664737270641175,
+              "final_accuracy": 0.7966241251543845,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 1.0,
+              "final_loss": 0.4792157701608108,
+              "final_accuracy": 0.7867435158501441,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.9999999403953552,
+              "final_loss": 0.47498055809120326,
+              "final_accuracy": 0.783038287361054,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 1.0,
+              "final_loss": 0.4825103215922319,
+              "final_accuracy": 0.7871552079044875,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.9999999403953552,
+              "final_loss": 0.4855825796895137,
+              "final_accuracy": 0.7772745986002471,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 1.0000001192092896,
+              "final_loss": 0.47831456503283104,
+              "final_accuracy": 0.7804777594728172,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.9999999403953552,
+              "final_loss": 0.4706207294771954,
+              "final_accuracy": 0.7841845140032949,
+              "original_size_bytes": 396458,
+              "compressed_size_bytes": 396539,
+              "compression_ratio": 1.0002043091575905
+            }
+          ]
+        },
+        "7-9_shard_aggregation": {
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.9759037717464095
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.9787267813717433
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 0.75,
+              "aggregation_norm": 0.9789459622456099
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 1,
+          "timestamp": 1789502741.6176295,
+          "broadcast": {
+            "round_num": 1,
+            "timestamp": 1789502741.6176326,
+            "model_hash": "781c6b78b91cc86643d8a9ceb6c8799de44117c3c383e3e1057667b8568f9fb2",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 1,
+            "timestamp": 1789502741.6180775,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 1,
+            "current_model_hash": "781c6b78b91cc86643d8a9ceb6c8799de44117c3c383e3e1057667b8568f9fb2",
+            "timestamp": 1789502741.6192071,
+            "aggregation": {
+              "round_num": 1,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 0.75
+                }
+              ],
+              "timestamp": 1789502741.6192193,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.9729395814650086,
+              "model_change_norm": 0.9729395814650086
+            },
+            "new_model_hash": "91cadbcc1cfa6065a99c57191b5fa3d67bde867ac062aafe4a8ea3d4f4053b1c",
+            "success": true
+          }
+        }
+      },
+      "gradient_stats": {
+        "avg_gradient_norm": 0.9999999751647314,
+        "max_gradient_norm": 1.0000001192092896,
+        "min_gradient_norm": 0.9999998807907104,
+        "std_gradient_norm": 5.685052843024133e-08,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.9759037717464095
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.9787267813717433
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 0.75,
+          "update_norm": 0.9789459622456099
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.9729395814650086,
+        "global_model_norm": 19.903960602996083,
+        "model_change_ratio": 0.049141143311111975
+      },
+      "training_stats": {
+        "avg_final_loss": 0.4763725346450948,
+        "local_pre_aggregation_accuracy": 0.7854248889211429,
+        "avg_final_accuracy": 0.7854248889211429
+      },
+      "communication_stats": {
+        "total_bytes_original": 4757496,
+        "total_bytes_compressed": 4758468,
+        "avg_compression_ratio": 1.0002043091575905,
+        "bytes_saved": -972
+      },
+      "global_eval": {
+        "round": 1,
+        "test_accuracy": 0.7781780751415337,
+        "test_f1": 0.699372239013691,
+        "n_test_samples": 5829
+      },
+      "elapsed_seconds": 18.304085969924927
+    },
+    {
+      "round_num": 2,
+      "timestamp": 1789502741.6553376,
+      "steps": {
+        "1_broadcast": {
+          "round_num": 1,
+          "timestamp": 1789502741.6556785,
+          "model_hash": "91cadbcc1cfa6065a99c57191b5fa3d67bde867ac062aafe4a8ea3d4f4053b1c",
+          "model_shape": [
+            99074
+          ],
+          "num_shards_receiving": 3
+        },
+        "2-6_client_updates": {
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.9450305054695602,
+              "final_loss": 0.4403651261827918,
+              "final_accuracy": 0.8135034993824619,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.8390096042578012,
+              "final_loss": 0.4564029882742082,
+              "final_accuracy": 0.7974475092630712,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.841057426220628,
+              "final_loss": 0.4477598942761089,
+              "final_accuracy": 0.8036228900782215,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.8583046742569311,
+              "final_loss": 0.4420285700716425,
+              "final_accuracy": 0.8040345821325648,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.7983064905305374,
+              "final_loss": 0.474013859972843,
+              "final_accuracy": 0.776039522437217,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.8059362489270248,
+              "final_loss": 0.45409449238026295,
+              "final_accuracy": 0.7982708933717579,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.8203364537583501,
+              "final_loss": 0.4533701488973875,
+              "final_accuracy": 0.799505969534788,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.8372130535065483,
+              "final_loss": 0.4482751122587115,
+              "final_accuracy": 0.799505969534788,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.83011807691312,
+              "final_loss": 0.4560569393063213,
+              "final_accuracy": 0.8023878139151914,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.8456314968982258,
+              "final_loss": 0.4572996577369942,
+              "final_accuracy": 0.7949773569370111,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.8350395497980092,
+              "final_loss": 0.44469438166926883,
+              "final_accuracy": 0.8010708401976936,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.8683486257143153,
+              "final_loss": 0.44641517464113,
+              "final_accuracy": 0.7969522240527183,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            }
+          ]
+        },
+        "7-9_shard_aggregation": {
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.8293288431564537
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.7786450144494271
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.8044507593418431
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 2,
+          "timestamp": 1789502751.267343,
+          "broadcast": {
+            "round_num": 2,
+            "timestamp": 1789502751.267345,
+            "model_hash": "91cadbcc1cfa6065a99c57191b5fa3d67bde867ac062aafe4a8ea3d4f4053b1c",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 2,
+            "timestamp": 1789502751.2678497,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 2,
+            "current_model_hash": "91cadbcc1cfa6065a99c57191b5fa3d67bde867ac062aafe4a8ea3d4f4053b1c",
+            "timestamp": 1789502751.2688127,
+            "aggregation": {
+              "round_num": 2,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1789502751.2688186,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.7957734058131011,
+              "model_change_norm": 0.7957734058131011
+            },
+            "new_model_hash": "5f686db6d9e81285e8ab0b1651c6c0f9606bcfaa346e71586edd86f072651e5c",
+            "success": true
+          }
+        }
+      },
+      "gradient_stats": {
+        "avg_gradient_norm": 0.843694350520921,
+        "max_gradient_norm": 0.9450305054695602,
+        "min_gradient_norm": 0.7983064905305374,
+        "std_gradient_norm": 0.035888154152203595,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.8293288431564537
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.7786450144494271
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.8044507593418431
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.7957734058131011,
+        "global_model_norm": 20.01382009911632,
+        "model_change_ratio": 0.03998065617621395
+      },
+      "training_stats": {
+        "avg_final_loss": 0.4517313621389725,
+        "local_pre_aggregation_accuracy": 0.7989432559031239,
+        "avg_final_accuracy": 0.7989432559031239
+      },
+      "communication_stats": {
+        "total_bytes_original": 9513048,
+        "total_bytes_compressed": 9514020,
+        "avg_compression_ratio": 1.000102175454176,
+        "bytes_saved": -972
+      },
+      "global_eval": {
+        "round": 2,
+        "test_accuracy": 0.7924172242237091,
+        "test_f1": 0.7256235827659451,
+        "n_test_samples": 5829
+      },
+      "elapsed_seconds": 9.702939987182617
+    },
+    {
+      "round_num": 3,
+      "timestamp": 1789502751.3659556,
+      "steps": {
+        "1_broadcast": {
+          "round_num": 2,
+          "timestamp": 1789502751.3663435,
+          "model_hash": "5f686db6d9e81285e8ab0b1651c6c0f9606bcfaa346e71586edd86f072651e5c",
+          "model_shape": [
+            99074
+          ],
+          "num_shards_receiving": 3
+        },
+        "2-6_client_updates": {
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.8063121785657191,
+              "final_loss": 0.4157944236357963,
+              "final_accuracy": 0.8233841086867023,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.7368544996307768,
+              "final_loss": 0.42977973802925235,
+              "final_accuracy": 0.8015644298065048,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.701279502911309,
+              "final_loss": 0.4235208774965224,
+              "final_accuracy": 0.8209139563606422,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.7391105243963537,
+              "final_loss": 0.4321560964684595,
+              "final_accuracy": 0.8036228900782215,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.6557732146077758,
+              "final_loss": 0.433464687787282,
+              "final_accuracy": 0.8048579662412515,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.6641435627871561,
+              "final_loss": 0.42009064256629247,
+              "final_accuracy": 0.8184438040345822,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.7067192552904618,
+              "final_loss": 0.42898466024301224,
+              "final_accuracy": 0.8060930424042816,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.7197190558372201,
+              "final_loss": 0.42397566496654304,
+              "final_accuracy": 0.8093865788390284,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.691857135764807,
+              "final_loss": 0.4390328961077575,
+              "final_accuracy": 0.8052696582955949,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.7527930469209845,
+              "final_loss": 0.43393449456696415,
+              "final_accuracy": 0.8069164265129684,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.713040056293734,
+              "final_loss": 0.4216804000274707,
+              "final_accuracy": 0.8138385502471169,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.7268073128064099,
+              "final_loss": 0.4182285631380853,
+              "final_accuracy": 0.8154859967051071,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            }
+          ]
+        },
+        "7-9_shard_aggregation": {
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.6935138408602216
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.6389772018432205
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.6712912963792607
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 3,
+          "timestamp": 1789502760.411268,
+          "broadcast": {
+            "round_num": 3,
+            "timestamp": 1789502760.4112844,
+            "model_hash": "5f686db6d9e81285e8ab0b1651c6c0f9606bcfaa346e71586edd86f072651e5c",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 3,
+            "timestamp": 1789502760.4118102,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 3,
+            "current_model_hash": "5f686db6d9e81285e8ab0b1651c6c0f9606bcfaa346e71586edd86f072651e5c",
+            "timestamp": 1789502760.4121962,
+            "aggregation": {
+              "round_num": 3,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1789502760.4121985,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.6571673138391778,
+              "model_change_norm": 0.6571673138391778
+            },
+            "new_model_hash": "1182a8252825b48d5185bced13faec3da0b704de8f6f499d6e67000415fe6de4",
+            "success": true
+          }
+        }
+      },
+      "gradient_stats": {
+        "avg_gradient_norm": 0.7178674454843922,
+        "max_gradient_norm": 0.8063121785657191,
+        "min_gradient_norm": 0.6557732146077758,
+        "std_gradient_norm": 0.03849093586236257,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.6935138408602216
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.6389772018432205
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.6712912963792607
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.6571673138391778,
+        "global_model_norm": 20.1161354983239,
+        "model_change_ratio": 0.03283567606065557
+      },
+      "training_stats": {
+        "avg_final_loss": 0.42672026208611985,
+        "local_pre_aggregation_accuracy": 0.8108147840176669,
+        "avg_final_accuracy": 0.8108147840176669
+      },
+      "communication_stats": {
+        "total_bytes_original": 9513048,
+        "total_bytes_compressed": 9514020,
+        "avg_compression_ratio": 1.000102175454176,
+        "bytes_saved": -972
+      },
+      "global_eval": {
+        "round": 3,
+        "test_accuracy": 0.8045977011494253,
+        "test_f1": 0.7541549751775714,
+        "n_test_samples": 5829
+      },
+      "elapsed_seconds": 9.108100652694702
+    },
+    {
+      "round_num": 4,
+      "timestamp": 1789502760.474226,
+      "steps": {
+        "1_broadcast": {
+          "round_num": 3,
+          "timestamp": 1789502760.474348,
+          "model_hash": "1182a8252825b48d5185bced13faec3da0b704de8f6f499d6e67000415fe6de4",
+          "model_shape": [
+            99074
+          ],
+          "num_shards_receiving": 3
+        },
+        "2-6_client_updates": {
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.7278156755489988,
+              "final_loss": 0.3939507216906286,
+              "final_accuracy": 0.8320296418279127,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.6885542975924316,
+              "final_loss": 0.41012672308181575,
+              "final_accuracy": 0.8130918073281186,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.6407044481142319,
+              "final_loss": 0.41049043210136843,
+              "final_accuracy": 0.8295594895018527,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.6722470687066083,
+              "final_loss": 0.398727716538576,
+              "final_accuracy": 0.8287361053931659,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.5985033877455957,
+              "final_loss": 0.4133536189304333,
+              "final_accuracy": 0.8163853437628654,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.6075377224860387,
+              "final_loss": 0.4039345204542747,
+              "final_accuracy": 0.8242074927953891,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.6538132338333256,
+              "final_loss": 0.4103282790988891,
+              "final_accuracy": 0.8151502675998353,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.6729391001294037,
+              "final_loss": 0.4046067632617232,
+              "final_accuracy": 0.8184438040345822,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.626885895987272,
+              "final_loss": 0.41641443851479754,
+              "final_accuracy": 0.8237958007410457,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.7038274279924825,
+              "final_loss": 0.4114625194771115,
+              "final_accuracy": 0.8246191848497324,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.6657206993370828,
+              "final_loss": 0.4159676970584783,
+              "final_accuracy": 0.8142504118616145,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.6727890704444126,
+              "final_loss": 0.41994164918970994,
+              "final_accuracy": 0.8179571663920923,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            }
+          ]
+        },
+        "7-9_shard_aggregation": {
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.622154657972257
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.5784665184591635
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.6101510487609345
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 4,
+          "timestamp": 1789502769.8628244,
+          "broadcast": {
+            "round_num": 4,
+            "timestamp": 1789502769.8628285,
+            "model_hash": "1182a8252825b48d5185bced13faec3da0b704de8f6f499d6e67000415fe6de4",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 4,
+            "timestamp": 1789502769.8633728,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 4,
+            "current_model_hash": "1182a8252825b48d5185bced13faec3da0b704de8f6f499d6e67000415fe6de4",
+            "timestamp": 1789502769.8637714,
+            "aggregation": {
+              "round_num": 4,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1789502769.863775,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.5907527973219365,
+              "model_change_norm": 0.5907527973219365
+            },
+            "new_model_hash": "2a9a70d820c34c5e4f27ece9010858ea49b1c10cce6787e735141d6527d7f661",
+            "success": true
+          }
+        }
+      },
+      "gradient_stats": {
+        "avg_gradient_norm": 0.6609448356598238,
+        "max_gradient_norm": 0.7278156755489988,
+        "min_gradient_norm": 0.5985033877455957,
+        "std_gradient_norm": 0.03637696675527871,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.622154657972257
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.5784665184591635
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.6101510487609345
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.5907527973219365,
+        "global_model_norm": 20.22208682956141,
+        "model_change_ratio": 0.029367111644156882
+      },
+      "training_stats": {
+        "avg_final_loss": 0.4091087566164839,
+        "local_pre_aggregation_accuracy": 0.8215188763406839,
+        "avg_final_accuracy": 0.8215188763406839
+      },
+      "communication_stats": {
+        "total_bytes_original": 9513048,
+        "total_bytes_compressed": 9514020,
+        "avg_compression_ratio": 1.000102175454176,
+        "bytes_saved": -972
+      },
+      "global_eval": {
+        "round": 4,
+        "test_accuracy": 0.816435066049065,
+        "test_f1": 0.7623278542864866,
+        "n_test_samples": 5829
+      },
+      "elapsed_seconds": 9.426782608032227
+    },
+    {
+      "round_num": 5,
+      "timestamp": 1789502769.9091885,
+      "steps": {
+        "1_broadcast": {
+          "round_num": 4,
+          "timestamp": 1789502769.9096682,
+          "model_hash": "2a9a70d820c34c5e4f27ece9010858ea49b1c10cce6787e735141d6527d7f661",
+          "model_shape": [
+            99074
+          ],
+          "num_shards_receiving": 3
+        },
+        "2-6_client_updates": {
+          "successful_submissions": 12,
+          "failed_submissions": 0,
+          "clients": [
+            {
+              "client_id": "client_0",
+              "gradient_norm": 0.6738687829239469,
+              "final_loss": 0.37687955746420126,
+              "final_accuracy": 0.8419102511321531,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_1",
+              "gradient_norm": 0.6498366199495412,
+              "final_loss": 0.39306633917065703,
+              "final_accuracy": 0.8225607245780157,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_2",
+              "gradient_norm": 0.6003424512428087,
+              "final_loss": 0.3957827097521203,
+              "final_accuracy": 0.8377933305887196,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_3",
+              "gradient_norm": 0.6334622181677415,
+              "final_loss": 0.3822494776011937,
+              "final_accuracy": 0.8357348703170029,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_4",
+              "gradient_norm": 0.5626203472281202,
+              "final_loss": 0.3994532945157283,
+              "final_accuracy": 0.825442568958419,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_5",
+              "gradient_norm": 0.5733596176374423,
+              "final_loss": 0.3937544706334994,
+              "final_accuracy": 0.8316179497735694,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_6",
+              "gradient_norm": 0.6162328386765614,
+              "final_loss": 0.39871546983597855,
+              "final_accuracy": 0.8242074927953891,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_7",
+              "gradient_norm": 0.6375907901648731,
+              "final_loss": 0.3891860204682361,
+              "final_accuracy": 0.8336764100452861,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_8",
+              "gradient_norm": 0.589328561584897,
+              "final_loss": 0.40247894893193426,
+              "final_accuracy": 0.825442568958419,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_9",
+              "gradient_norm": 0.6692536852853158,
+              "final_loss": 0.40483286606935465,
+              "final_accuracy": 0.822972416632359,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_10",
+              "gradient_norm": 0.6215924581120374,
+              "final_loss": 0.3892477017263351,
+              "final_accuracy": 0.8331960461285008,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            },
+            {
+              "client_id": "client_11",
+              "gradient_norm": 0.6238659286741983,
+              "final_loss": 0.38250385300426315,
+              "final_accuracy": 0.8340197693574959,
+              "original_size_bytes": 792754,
+              "compressed_size_bytes": 792835,
+              "compression_ratio": 1.0001021754541761
+            }
+          ]
+        },
+        "7-9_shard_aggregation": {
+          "shard_results": {
+            "shard_0": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.571404672418738
+            },
+            "shard_1": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.5357229883457904
+            },
+            "shard_2": {
+              "updates_aggregated": 4,
+              "verification_rate": 1.0,
+              "aggregation_norm": 0.5625360451409235
+            }
+          }
+        },
+        "10_global_aggregation": {
+          "round_num": 5,
+          "timestamp": 1789502779.9820802,
+          "broadcast": {
+            "round_num": 5,
+            "timestamp": 1789502779.9820824,
+            "model_hash": "2a9a70d820c34c5e4f27ece9010858ea49b1c10cce6787e735141d6527d7f661",
+            "model_shape": [
+              99074
+            ],
+            "num_shards_receiving": 3
+          },
+          "collection": {
+            "round_num": 5,
+            "timestamp": 1789502779.9826458,
+            "num_updates_received": 3,
+            "expected_updates": 3,
+            "complete": true
+          },
+          "aggregation": {
+            "round_num": 5,
+            "current_model_hash": "2a9a70d820c34c5e4f27ece9010858ea49b1c10cce6787e735141d6527d7f661",
+            "timestamp": 1789502779.983184,
+            "aggregation": {
+              "round_num": 5,
+              "num_shards": 3,
+              "method": "weighted_mean",
+              "shard_details": [
+                {
+                  "shard_id": "shard_0",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_1",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                },
+                {
+                  "shard_id": "shard_2",
+                  "updates_aggregated": 4,
+                  "verification_rate": 1.0
+                }
+              ],
+              "timestamp": 1789502779.983188,
+              "aggregation_successful": true
+            },
+            "model_update": {
+              "learning_rate": 1.0,
+              "update_norm": 0.5419273283819029,
+              "model_change_norm": 0.5419273283819029
+            },
+            "new_model_hash": "f6aefa21b39d863df4c9af4b6ab2942772b47e53c76b7ac6bdcdca7b6471a4e7",
+            "success": true
+          }
+        }
+      },
+      "gradient_stats": {
+        "avg_gradient_norm": 0.6209461916372904,
+        "max_gradient_norm": 0.6738687829239469,
+        "min_gradient_norm": 0.5626203472281202,
+        "std_gradient_norm": 0.03357143882787077,
+        "total_clients_trained": 12
+      },
+      "shard_contributions": {
+        "shard_0": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.571404672418738
+        },
+        "shard_1": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.5357229883457904
+        },
+        "shard_2": {
+          "num_updates": 4,
+          "verification_rate": 1.0,
+          "update_norm": 0.5625360451409235
+        }
+      },
+      "model_changes": {
+        "weight_change_norm": 0.5419273283819029,
+        "global_model_norm": 20.331095125413725,
+        "model_change_ratio": 0.026798783561828313
+      },
+      "training_stats": {
+        "avg_final_loss": 0.39234589243112516,
+        "local_pre_aggregation_accuracy": 0.8307145332721109,
+        "avg_final_accuracy": 0.8307145332721109
+      },
+      "communication_stats": {
+        "total_bytes_original": 9513048,
+        "total_bytes_compressed": 9514020,
+        "avg_compression_ratio": 1.000102175454176,
+        "bytes_saved": -972
+      },
+      "global_eval": {
+        "round": 5,
+        "test_accuracy": 0.8260422027792074,
+        "test_f1": 0.7759611135655653,
+        "n_test_samples": 5829
+      },
+      "elapsed_seconds": 10.132039070129395
+    }
+  ],
+  "final_stats": {
+    "global_coordinator": {
+      "round_num": 5,
+      "global_model_hash": "f6aefa21b39d863df4c9af4b6ab2942772b47e53c76b7ac6bdcdca7b6471a4e7",
+      "broadcasts": 10,
+      "collections": 5,
+      "aggregator_stats": {
+        "num_shards": 3,
+        "round_num": 5,
+        "total_aggregations": 5,
+        "successful_aggregations": 0,
+        "aggregation_success_rate": 0.0
+      }
+    },
+    "shard_chiefs": {
+      "shard_0": {
+        "chief_id": "client_2",
+        "shard_id": "shard_0",
+        "is_active": true,
+        "updates_verified": 20,
+        "updates_rejected": 0,
+        "aggregations_performed": 5,
+        "verification_success_rate": 1.0,
+        "capabilities": {
+          "uptime": 0.9566270796849219,
+          "bandwidth_mbps": 83.76992723956826,
+          "compute_capacity": 0.8219170354314981
+        }
+      },
+      "shard_1": {
+        "chief_id": "client_5",
+        "shard_id": "shard_1",
+        "is_active": true,
+        "updates_verified": 20,
+        "updates_rejected": 0,
+        "aggregations_performed": 5,
+        "verification_success_rate": 1.0,
+        "capabilities": {
+          "uptime": 0.953585809214324,
+          "bandwidth_mbps": 97.55256803883117,
+          "compute_capacity": 1.0507271164819123
+        }
+      },
+      "shard_2": {
+        "chief_id": "client_10",
+        "shard_id": "shard_2",
+        "is_active": true,
+        "updates_verified": 19,
+        "updates_rejected": 1,
+        "aggregations_performed": 5,
+        "verification_success_rate": 0.95,
+        "capabilities": {
+          "uptime": 0.9817182767746524,
+          "bandwidth_mbps": 125.05243136314468,
+          "compute_capacity": 0.9325388096962985
+        }
+      }
+    },
+    "dag_stats": {
+      "global_model_history_length": 6,
+      "shard_stats": {
+        "shard_0": {
+          "total_nodes": 21,
+          "total_edges": 20,
+          "status_breakdown": {
+            "finalized": 1,
+            "verified": 20
+          },
+          "finalized_chain_length": 1,
+          "num_clients": 5
+        },
+        "shard_1": {
+          "total_nodes": 21,
+          "total_edges": 20,
+          "status_breakdown": {
+            "finalized": 1,
+            "verified": 20
+          },
+          "finalized_chain_length": 1,
+          "num_clients": 5
+        },
+        "shard_2": {
+          "total_nodes": 21,
+          "total_edges": 20,
+          "status_breakdown": {
+            "finalized": 1,
+            "verified": 20
+          },
+          "finalized_chain_length": 1,
+          "num_clients": 5
+        }
+      }
+    },
+    "client_stats": [
+      {
+        "client_id": "client_0",
+        "shard_id": "shard_0",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_1",
+        "shard_id": "shard_0",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_2",
+        "shard_id": "shard_0",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_3",
+        "shard_id": "shard_0",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_4",
+        "shard_id": "shard_1",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_5",
+        "shard_id": "shard_1",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_6",
+        "shard_id": "shard_1",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_7",
+        "shard_id": "shard_1",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_8",
+        "shard_id": "shard_2",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_9",
+        "shard_id": "shard_2",
+        "round_num": 5,
+        "total_samples_trained": 60725,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_10",
+        "shard_id": "shard_2",
+        "round_num": 5,
+        "total_samples_trained": 60700,
+        "rounds_completed": 5
+      },
+      {
+        "client_id": "client_11",
+        "shard_id": "shard_2",
+        "round_num": 5,
+        "total_samples_trained": 60700,
+        "rounds_completed": 5
+      }
+    ]
+  }
+}

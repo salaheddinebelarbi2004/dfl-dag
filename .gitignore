@@ -1,0 +1,43 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tooling
+.qodo/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# NOTE ON DATASETS
+# real_federated_data/, malisious/ and the source .csv/.xlsx are intentionally
+# tracked so the project runs out of the box. If you would rather regenerate
+# them, uncomment the block below and run scripts/load_filtered_data.py ->
+# scripts/generate_embeddings.py -> scripts/make_malicious_clients.py.
+#
+# real_federated_data/
+# malisious/
+# *.npz
+# filtered_training_data.csv
+# clean_spam_dataset.csv
+# Augmented_SpamHamTweets.xlsx
+
+# NOTE ON MODEL ARTIFACTS
+# model.pt / model.safetensors / global_model.npy / *_results.json are run
+# outputs. Uncomment to exclude them.
+#
+# *.pt
+# *.safetensors
+# global_model.npy
+# training_results.json

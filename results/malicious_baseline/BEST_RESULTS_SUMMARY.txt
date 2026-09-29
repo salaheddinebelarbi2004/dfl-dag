@@ -1,0 +1,76 @@
+================================================================================
+MALICIOUS EVALUATION TEST - FULL SYSTEM RESULTS
+================================================================================
+
+SYSTEM ARCHITECTURE:
+  Pre-trained global model (global_model.npy) broadcast to all clients at round 0.
+  Each client trains locally on their malisious/ data partition.
+  Malicious clients (4, 7) have 100% spam labels (label-flipping attack).
+
+MALICIOUS DETECTION (3-layer):
+  1. Label Skew Detection:  Clients with >95% of one class
+  2. Norm Outlier Detection: Gradients with norm > 3 MAD from median
+  3. Similarity Outlier:     Updates with low cosine similarity to consensus (Byzantine detection)
+
+ROBUST AGGREGATION:
+  - Detected clients receive 90% weight reduction
+  - Clients with reputation < 0.5 excluded entirely
+  - Weighted averaging by reputation scores
+
+REPUTATION SYSTEM:
+  - Initial score: 0.8 for all clients
+  - Detected malicious: -0.3 penalty
+  - Honest behavior: +0.05 reward per round
+
+BYZANTINE FAULT TOLERANCE:
+  - Voting via cosine similarity consensus
+  - Updates diverging from group median are downweighted
+  - Requires majority honest for correct consensus
+
+RESULTS:
+  Metric           Round 0 (broadcast)    Round 5 (final)    Change
+  -------          -------------------    ----------------------    --------
+  Accuracy         0.7869                 0.8834                  +0.0965
+  Precision        N/A                     0.8348                  N/A
+  Recall           N/A                     0.9026                  N/A
+  F1 Score         0.7558                 0.8674                  +0.1116
+  Loss             2.1130                 1.0731                  -1.0399
+
+REPUTATION EVOLUTION:
+    client_0: 0.8 -> 1.000
+    client_1: 0.8 -> 1.000
+    client_10: 0.8 -> 1.000
+    client_11: 0.8 -> 1.000
+    client_2: 0.8 -> 1.000
+    client_3: 0.8 -> 1.000
+    client_4: 0.8 -> 0.000 <<< MALICIOUS
+    client_5: 0.8 -> 1.000
+    client_6: 0.8 -> 1.000
+    client_7: 0.8 -> 0.000 <<< MALICIOUS
+    client_8: 0.8 -> 1.000
+    client_9: 0.8 -> 1.000
+
+FINAL CONFUSION MATRIX:
+          Pred Ham  Pred Spam
+True Ham  3658      550   
+True Spam 300       2779  
+
+================================================================================    client_0: 0.8 -> 1.000
+    client_1: 0.8 -> 1.000
+    client_10: 0.8 -> 1.000
+    client_11: 0.8 -> 1.000
+    client_2: 0.8 -> 1.000
+    client_3: 0.8 -> 1.000
+    client_4: 0.8 -> 0.000 <<< MALICIOUS
+    client_5: 0.8 -> 1.000
+    client_6: 0.8 -> 1.000
+    client_7: 0.8 -> 0.000 <<< MALICIOUS
+    client_8: 0.8 -> 1.000
+    client_9: 0.8 -> 1.000
+
+FINAL CONFUSION MATRIX:
+          Pred Ham  Pred Spam
+True Ham  3658      550   
+True Spam 300       2779  
+
+================================================================================

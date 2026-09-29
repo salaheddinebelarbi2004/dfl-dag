@@ -1,0 +1,286 @@
+version: "3.9"
+
+networks:
+  p2p-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+services:
+  client-0:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-0
+    hostname: client-0
+    environment:
+      CLIENT_ID: "0"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_0.npz:/data/real_federated_data/client_0.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.10
+    restart: "no"
+    depends_on: []
+
+  client-1:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-1
+    hostname: client-1
+    environment:
+      CLIENT_ID: "1"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_1.npz:/data/real_federated_data/client_1.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.11
+    restart: "no"
+
+  client-2:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-2
+    hostname: client-2
+    environment:
+      CLIENT_ID: "2"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_2.npz:/data/real_federated_data/client_2.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.12
+    restart: "no"
+
+  client-3:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-3
+    hostname: client-3
+    environment:
+      CLIENT_ID: "3"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_3.npz:/data/real_federated_data/client_3.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.13
+    restart: "no"
+
+  client-4:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-4
+    hostname: client-4
+    environment:
+      CLIENT_ID: "4"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_4.npz:/data/real_federated_data/client_4.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.14
+    restart: "no"
+
+  client-5:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-5
+    hostname: client-5
+    environment:
+      CLIENT_ID: "5"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_5.npz:/data/real_federated_data/client_5.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.15
+    restart: "no"
+
+  client-6:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-6
+    hostname: client-6
+    environment:
+      CLIENT_ID: "6"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_6.npz:/data/real_federated_data/client_6.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.16
+    restart: "no"
+
+  client-7:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-7
+    hostname: client-7
+    environment:
+      CLIENT_ID: "7"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_7.npz:/data/real_federated_data/client_7.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.17
+    restart: "no"
+
+  client-8:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-8
+    hostname: client-8
+    environment:
+      CLIENT_ID: "8"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_8.npz:/data/real_federated_data/client_8.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.18
+    restart: "no"
+
+  client-9:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-9
+    hostname: client-9
+    environment:
+      CLIENT_ID: "9"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_9.npz:/data/real_federated_data/client_9.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.19
+    restart: "no"
+
+  client-10:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-10
+    hostname: client-10
+    environment:
+      CLIENT_ID: "10"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_10.npz:/data/real_federated_data/client_10.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.20
+    restart: "no"
+
+  client-11:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: client-11
+    hostname: client-11
+    environment:
+      CLIENT_ID: "11"
+      NUM_CLIENTS: "12"
+      NUM_SHARDS: "3"
+      NUM_ROUNDS: "5"
+      LOCAL_EPOCHS: "2"
+      P2P_PORT: "5555"
+      BATCH_SIZE: "32"
+      PYTHONUNBUFFERED: "1"
+    volumes:
+      - ../real_federated_data/client_11.npz:/data/real_federated_data/client_11.npz:ro
+      - ../results:/results
+    networks:
+      p2p-net:
+        ipv4_address: 172.28.0.21
+    restart: "no"

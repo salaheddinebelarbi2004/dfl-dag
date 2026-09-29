@@ -1,0 +1,74 @@
+{
+  "client_0": {
+    "num_samples": 1513,
+    "num_spam": 929,
+    "num_ham": 584,
+    "embedding_dim": 384
+  },
+  "client_1": {
+    "num_samples": 1513,
+    "num_spam": 927,
+    "num_ham": 586,
+    "embedding_dim": 384
+  },
+  "client_2": {
+    "num_samples": 1513,
+    "num_spam": 931,
+    "num_ham": 582,
+    "embedding_dim": 384
+  },
+  "client_3": {
+    "num_samples": 1513,
+    "num_spam": 937,
+    "num_ham": 576,
+    "embedding_dim": 384
+  },
+  "client_4": {
+    "num_samples": 1513,
+    "num_spam": 922,
+    "num_ham": 591,
+    "embedding_dim": 384
+  },
+  "client_5": {
+    "num_samples": 1513,
+    "num_spam": 951,
+    "num_ham": 562,
+    "embedding_dim": 384
+  },
+  "client_6": {
+    "num_samples": 1513,
+    "num_spam": 926,
+    "num_ham": 587,
+    "embedding_dim": 384
+  },
+  "client_7": {
+    "num_samples": 1513,
+    "num_spam": 935,
+    "num_ham": 578,
+    "embedding_dim": 384
+  },
+  "client_8": {
+    "num_samples": 1513,
+    "num_spam": 915,
+    "num_ham": 598,
+    "embedding_dim": 384
+  },
+  "client_9": {
+    "num_samples": 1513,
+    "num_spam": 907,
+    "num_ham": 606,
+    "embedding_dim": 384
+  },
+  "client_10": {
+    "num_samples": 1513,
+    "num_spam": 926,
+    "num_ham": 587,
+    "embedding_dim": 384
+  },
+  "client_11": {
+    "num_samples": 1515,
+    "num_spam": 922,
+    "num_ham": 593,
+    "embedding_dim": 384
+  }
+}

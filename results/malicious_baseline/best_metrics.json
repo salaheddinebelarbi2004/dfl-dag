@@ -1,0 +1,209 @@
+{
+  "initial": {
+    "accuracy": 0.7868807465349252,
+    "f1": 0.7557792105676994,
+    "loss": 2.1130326765109055
+  },
+  "final": {
+    "accuracy": 0.8833539179360504,
+    "f1": 0.8673533083645443,
+    "precision": 0.8347852207870231,
+    "recall": 0.9025657681065281,
+    "roc_auc": 0.9269834472947491,
+    "loss": 1.073141138566499,
+    "confusion_matrix": {
+      "tn": 3658,
+      "fp": 550,
+      "fn": 300,
+      "tp": 2779
+    }
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "accuracy": 0.7868807465349252,
+      "f1": 0.7557792105676994,
+      "loss": 2.1130326765109055,
+      "detected": [],
+      "stage": "Pre-trained model broadcast"
+    },
+    {
+      "round": 1,
+      "accuracy": 0.8391656374365308,
+      "f1": 0.813375796178344,
+      "loss": 2.962678437047094,
+      "detected": [
+        "client_7",
+        "client_4"
+      ],
+      "stage": "Robust aggregation (skew+norm+sim detection, reputation weighting)"
+    },
+    {
+      "round": 2,
+      "accuracy": 0.9116234390009607,
+      "f1": 0.8919825561891983,
+      "loss": 1.4713842224202123,
+      "detected": [
+        "client_7",
+        "client_4"
+      ],
+      "stage": "Robust aggregation (skew+norm+sim detection, reputation weighting)"
+    },
+    {
+      "round": 3,
+      "accuracy": 0.9009194455880335,
+      "f1": 0.8784102391377568,
+      "loss": 1.1689782609469865,
+      "detected": [
+        "client_7",
+        "client_4"
+      ],
+      "stage": "Robust aggregation (skew+norm+sim detection, reputation weighting)"
+    },
+    {
+      "round": 4,
+      "accuracy": 0.8974886784685056,
+      "f1": 0.8825286994810505,
+      "loss": 1.0970368001542605,
+      "detected": [
+        "client_7",
+        "client_4"
+      ],
+      "stage": "Robust aggregation (skew+norm+sim detection, reputation weighting)"
+    },
+    {
+      "round": 5,
+      "accuracy": 0.8833539179360504,
+      "f1": 0.8673533083645443,
+      "loss": 1.073141138566499,
+      "detected": [
+        "client_7",
+        "client_4"
+      ],
+      "stage": "Robust aggregation (skew+norm+sim detection, reputation weighting)"
+    }
+  ],
+  "reputation_evolution": {
+    "client_0": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_1": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_10": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_11": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_2": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_3": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_4": [
+      0.8,
+      0.5,
+      0.2,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "client_5": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_6": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_7": [
+      0.8,
+      0.5,
+      0.2,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "client_8": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ],
+    "client_9": [
+      0.8,
+      0.8500000000000001,
+      0.9000000000000001,
+      0.9500000000000002,
+      1.0,
+      1.0
+    ]
+  },
+  "config": {
+    "num_rounds": 5,
+    "model": "global_model.npy",
+    "data": "malisious",
+    "malicious_clients": [
+      "client_4",
+      "client_7"
+    ],
+    "aggregation": "robust_weighted (norm_outlier + similarity_outlier + label_skew + reputation_weighted)",
+    "reputation_penalty": 0.3,
+    "final_reputations": {
+      "client_0": 1.0,
+      "client_1": 1.0,
+      "client_10": 1.0,
+      "client_11": 1.0,
+      "client_2": 1.0,
+      "client_3": 1.0,
+      "client_4": 0.0,
+      "client_5": 1.0,
+      "client_6": 1.0,
+      "client_7": 0.0,
+      "client_8": 1.0,
+      "client_9": 1.0
+    }
+  }
+}
